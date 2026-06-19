@@ -11,3 +11,4 @@ docs/
 
 # Local config / secrets
 config.json
+test.py

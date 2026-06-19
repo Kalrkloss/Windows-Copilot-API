@@ -1,108 +1,159 @@
-# Copilot API
+# Windows Copilot API: a free LLM API powered by Microsoft Copilot
 
-An unofficial Python wrapper for Microsoft Copilot's consumer chat
-(`copilot.microsoft.com`). It replays Copilot's own chat protocol directly over
-HTTP — **no browser needed at request time** — solving the proof-of-work
-challenge in-process and clearing Cloudflare with Chrome TLS impersonation.
+**Using your own Microsoft Copilot account.** No API key, no credits, no paid plan: it turns the free chat at [copilot.microsoft.com](https://copilot.microsoft.com) into an API you can call from code.
 
-> **Deep dive / recreation:** see [docs/IMPLEMENTATION_GUIDE.md](docs/IMPLEMENTATION_GUIDE.md)
-> for the full protocol, the hashcash reverse-engineering, and the auth flow.
+You can use it in two ways:
 
-## Quick start
+- 🐍 **As a Python library:** just call `client.chat("Hi")`. Supports streaming and multi-turn conversations.
+- 🔌 **As a local OpenAI-compatible API:** runs a server at `http://localhost:8000/v1` that speaks the OpenAI format, so the official `openai` SDK (and any OpenAI-compatible app) works as a drop-in, with `localhost` in place of OpenAI.
 
-### 1. Install
+You sign in once with your Microsoft account in a browser; your session is saved and refreshed automatically after that.
 
-```powershell
-.\venv\Scripts\python.exe -m pip install -r requirements.txt
-.\venv\Scripts\python.exe -m playwright install chromium   # one-time, for sign-in only
+> **Unofficial project.** Not affiliated with or endorsed by Microsoft. It automates the consumer Copilot web experience for personal use, so use it responsibly and within Microsoft's terms.
+
+---
+
+## Why use this?
+
+- **Free:** uses your normal signed-in Copilot, no API billing.
+- **Drop-in OpenAI replacement:** point any OpenAI client at `localhost` and it just works.
+- **Works everywhere you're signed in:** the signed-in path works even in regions where *anonymous* Copilot is blocked (e.g. India).
+- **Streaming + conversations:** token-by-token output and multi-turn threads addressed by `conversation_id`.
+
+---
+
+## Requirements
+
+- **Python 3.9+**
+- A **Microsoft account** (the free one you use for Copilot is fine)
+- Works on Windows, macOS, and Linux
+
+---
+
+## Setup (2 minutes)
+
+```bash
+# 1. Clone the project
+git clone <your-repo-url>
+cd "Windows Copilot API"
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Install the browser Playwright needs (one-time)
+playwright install chromium
+
+# 4. Sign in once: a browser opens, log into your Microsoft account
+python -m copilot login
 ```
 
-### 2. Sign in once
+That's it. Your session is saved under `session/` (git-ignored, never shared) and reused on every run.
 
-Microsoft geo-restricts the *anonymous* chat experience (e.g. in India the
-anonymous socket returns `chat-service-unavailable`). Signing in with a Microsoft
-account works in those regions, so authenticate once:
+> 💡 You can even skip step 4: the **first** time you call `chat()` or start the server, it opens the sign-in browser for you automatically.
 
-```powershell
-.\venv\Scripts\python.exe -m copilot login
-```
+---
 
-A browser window opens — sign in, wait for the chat to load, then press Enter.
-The session is saved under `session/` and reused automatically afterwards. You
-only need to repeat this if the login is revoked or expires.
+## Usage 1: In Python (no server)
 
-### 3. Chat
+The simplest way if your code is already Python.
 
 ```python
-from copilot import CopilotSession
+from copilot import CopilotClient
 
-chat = CopilotSession()            # loads your signed-in auth once
+client = CopilotClient()                 # loads your signed-in session
 
-# buffered — full reply as a string
-print(chat.ask("Hello!"))
+# Get a full reply
+reply = client.chat("Say hello in one short sentence.")
+print(reply.text)
 
-# streamed — text as it arrives
-for chunk in chat.stream("Tell me a joke"):
+# Continue the SAME conversation — pass the id back
+reply2 = client.chat("And now in French?", reply.conversation_id)
+print(reply2.text)
+
+# Stream the answer as it's typed
+for chunk in client.stream("Tell me a short joke"):
     print(chunk, end="", flush=True)
-
-chat.reset()                       # drop context and start a fresh chat
 ```
 
-One `CopilotSession` keeps a single conversation, so successive `ask`/`stream`
-calls share context like a real chat. The short-lived access token is refreshed
-transparently from your saved profile — no need to re-run `login`.
+`chat()` returns the full text plus a `conversation_id`; pass that id back to keep the thread going, or omit it to start fresh. `stream()` yields the reply piece by piece.
 
-Run the included example directly:
+👉 More: [examples/01_direct_chat.py](examples/01_direct_chat.py), [02_direct_conversation.py](examples/02_direct_conversation.py), [03_direct_stream.py](examples/03_direct_stream.py)
 
-```powershell
-.\venv\Scripts\python.exe main.py
+---
+
+## Usage 2: As an OpenAI-compatible server
+
+Start a local server that speaks the OpenAI API, so existing OpenAI tools and SDKs work unchanged.
+
+```bash
+python app.py
+# -> Copilot OpenAI-compatible API on http://127.0.0.1:8000
 ```
 
-## Options
-
-**Anonymous (no sign-in)** — works only where consumer Copilot is available:
+Then point any OpenAI client at it (the API key is required by the SDK but ignored):
 
 ```python
-chat = CopilotSession(anonymous=True)
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="unused")
+
+resp = client.chat.completions.create(
+    model="copilot",
+    messages=[{"role": "user", "content": "Hello!"}],
+)
+print(resp.choices[0].message.content)
 ```
 
-**Via a proxy** — route through a supported region if anonymous chat is blocked
-where you are:
+Or call it with plain HTTP / `curl`:
 
-```python
-chat = CopilotSession(proxy="http://user:pass@host:port")   # or socks5://
+```bash
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"messages": [{"role": "user", "content": "Hello!"}]}'
 ```
 
-## CLI
+**Endpoints**
 
-```powershell
-.\venv\Scripts\python.exe -m copilot login        # interactive sign-in
-.\venv\Scripts\python.exe -m copilot ask "hi"     # one-shot reply (browser driver)
+| Method | Path | Description |
+| --- | --- | --- |
+| `POST` | `/v1/chat/completions` | Chat (supports `"stream": true` and an optional `"conversation_id"`) |
+| `GET`  | `/v1/models` | Lists the single `copilot` model |
+
+> Change the address with env vars: `HOST=0.0.0.0 PORT=8080 python app.py`, or run `uvicorn server.api:app --host 0.0.0.0 --port 8080`.
+
+👉 More: [examples/04_server_http.py](examples/04_server_http.py), [05_server_stream.py](examples/05_server_stream.py), [06_server_openai_sdk.py](examples/06_server_openai_sdk.py)
+
+---
+
+## Command line
+
+```bash
+python -m copilot login          # sign in and save the session
+python -m copilot ask "Hello!"   # quick one-shot question
 ```
 
-## How it works
-
-`copilot/client.py` (`Copilot`) speaks the protocol directly over
-[`curl_cffi`](https://github.com/lexiforest/curl_cffi):
-
-1. **Cloudflare** — Chrome impersonation clears it; no browser needed.
-2. **Conversation** — `POST /c/api/conversations` returns a conversation id.
-3. **Proof-of-work** — the chat socket sends a `hashcash` (or `copilot`)
-   challenge before streaming; it's solved in-process and the message is
-   re-sent, mirroring the official client. See `copilot/challenges.py`.
-
-`CopilotSession` (`copilot/session.py`) is the recommended entry point: it wraps
-the low-level `Copilot` driver with auth handling and conversation state. The
-Playwright driver in `copilot/browser.py` (`BrowserCopilot`) is an optional
-fallback used only for sign-in and the `ask` CLI command.
+---
 
 ## Project layout
 
-| Path | Purpose |
+| Path | What it does |
 | --- | --- |
-| `copilot/session.py` | `CopilotSession` — high-level chat (use this) |
-| `copilot/client.py` | `Copilot` — pure-HTTP protocol driver |
-| `copilot/auth.py` | signed-in token caching / refresh |
-| `copilot/challenges.py` | proof-of-work solvers |
-| `copilot/browser.py` | Playwright fallback (login + CLI) |
-| `main.py` | runnable example |
+| [copilot/](copilot/) | The core library: `CopilotClient`, auth, browser sign-in, HTTP driver |
+| [server/](server/) | The FastAPI OpenAI-compatible server |
+| [examples/](examples/) | Runnable examples for every feature ([examples/README.md](examples/README.md)) |
+| [app.py](app.py) | Starts the server |
+
+---
+
+## Notes & limitations
+
+- **Sign in once, then reuse.** The cached token refreshes automatically; you only re-sign-in if the session fully expires.
+- **No daily limit, but be reasonable.** Microsoft doesn't impose a daily chat cap, but please use it in moderation, and don't spam or hammer it with automated bulk requests.
+- **One model.** Copilot has no model picker, so the server advertises a single model named `copilot`.
+- **Your session is private.** Everything in `session/` (cookies + token) stays on your machine and is git-ignored.
+
+---
+
+## License
+
+For personal and educational use. You are responsible for complying with Microsoft's terms of service.

@@ -227,11 +227,12 @@ class BrowserCopilot:
 
     # -- auth ---------------------------------------------------------------
 
-    def login(self) -> None:
+    def login(self, path: str = DEFAULT_AUTH_FILE) -> dict:
         """Open a visible window for interactive Microsoft sign-in.
 
         Blocks until you press Enter in the console. The session is persisted in
-        ``profile_dir``, so subsequent headless runs reuse it.
+        ``profile_dir`` (and snapshotted to ``path``), so subsequent headless
+        runs reuse it. Returns the captured auth dict.
         """
         self.close()
         self.start(headless=False)
@@ -245,13 +246,15 @@ class BrowserCopilot:
         except EOFError:
             pass
         # Snapshot fresh auth so the headless curl_cffi path works immediately.
+        auth: dict = {}
         try:
-            self.export_auth(stamp=time.time())
-            print(f"Auth snapshot saved to {DEFAULT_AUTH_FILE}")
+            auth = self.export_auth(path=path, stamp=time.time())
+            print(f"Auth snapshot saved to {path}")
         except Exception as exc:
             print(f"(could not snapshot auth: {exc})")
         self.close()
         print(f"Session saved to {self.profile_dir}")
+        return auth
 
     def access_token(self) -> Optional[str]:
         """Return the page's MSAL access token, or ``None`` if anonymous."""

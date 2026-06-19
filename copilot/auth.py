@@ -23,13 +23,19 @@ def load_auth(
     profile_dir: str = DEFAULT_PROFILE_DIR,
     max_age: int = AUTH_MAX_AGE,
     proxy: Optional[str] = None,
+    auto_login: bool = True,
 ) -> dict:
     """Return ``{cookies, access_token, saved_at}`` for the signed-in user.
 
     Uses the cached snapshot at ``path`` while fresh; otherwise spins up a
     headless browser against the persistent ``profile_dir`` to read a fresh MSAL
     token (the profile stays signed in via its long-lived refresh token) and
-    re-snapshots. Raises ``RuntimeError`` if the profile is not signed in.
+    re-snapshots.
+
+    When the profile is *not* signed in (e.g. first-ever use) and ``auto_login``
+    is true, this opens a visible browser for interactive Microsoft sign-in
+    instead of failing — so the very first call just works. Set
+    ``auto_login=False`` (or run headless/CI) to get a ``RuntimeError`` instead.
 
     Intended for the pure-HTTP :class:`copilot.client.Copilot` path::
 
@@ -48,15 +54,30 @@ def load_auth(
 
     from .browser import BrowserCopilot
 
+    # Try a headless read first: a signed-in profile just needs a fresh token.
     bot = BrowserCopilot(profile_dir=profile_dir, headless=True, proxy=proxy)
     try:
         bot.start()
         token = bot.access_token()
-        if not token or bot.region_blocked():
-            raise RuntimeError(
-                "Not signed in (no access token in the browser profile). "
-                "Run `python -m copilot login` and sign in first."
-            )
-        return bot.export_auth(path=path, stamp=time.time())
+        if token and not bot.region_blocked():
+            return bot.export_auth(path=path, stamp=time.time())
     finally:
         bot.close()
+
+    # No signed-in session in the profile.
+    if not auto_login:
+        raise RuntimeError(
+            "Not signed in (no access token in the browser profile). "
+            "Run `python -m copilot login` and sign in first."
+        )
+
+    # First-time use: create the session interactively, then return its auth.
+    print("No saved Copilot session found — opening a browser to sign in...")
+    auth = BrowserCopilot(profile_dir=profile_dir, headless=False, proxy=proxy).login(path=path)
+    if not auth.get("access_token"):
+        raise RuntimeError(
+            "Sign-in did not complete (no access token captured). "
+            "Re-run and finish the Microsoft sign-in before pressing Enter, "
+            "or sign in manually with `python -m copilot login`."
+        )
+    return auth
