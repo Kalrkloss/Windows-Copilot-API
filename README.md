@@ -1,19 +1,19 @@
 
 
-# Windows Copilot API: a free LLM API powered by Microsoft Copilot
+# Windows Copilot API: a local API for Microsoft Copilot for work
 
-![Windows Copilot API — a free, OpenAI-compatible API for your Microsoft Copilot account](assets/windows-copilot-api-banner.png)
+![Windows Copilot API — a local, OpenAI-compatible API for your Microsoft Copilot for work account](assets/windows-copilot-api-banner.png)
 
-**Using your own Microsoft Copilot account.** No API key, no credits, no paid plan: it turns the free chat at [m365.cloud.microsoft/chat](https://m365.cloud.microsoft/chat) into an API you can call from code.
+**Using your own Microsoft Copilot for work account.** This project turns the signed-in Copilot experience into an API you can call from code, without needing an API key or a separate paid SDK.
 
 You can use it in two ways:
 
 - 🐍 **As a Python library:** just call `client.chat("Hi")`. Supports streaming and multi-turn conversations.
 - 🔌 **As a local OpenAI-compatible API:** runs a server at `http://localhost:8000/v1` that speaks the OpenAI format, so the official `openai` SDK (and any OpenAI-compatible app) works as a drop-in, with `localhost` in place of OpenAI.
 
-You sign in once in a browser with your Microsoft **or Google** account; your session is saved and refreshed automatically after that.
+You sign in once in a browser with a Microsoft **work or school** account that has access to Copilot; your session is saved and refreshed automatically after that.
 
-> **Unofficial project.** Not affiliated with or endorsed by Microsoft. It automates the consumer Copilot web experience for personal use, so use it responsibly and within Microsoft's terms.
+> **Unofficial project.** Not affiliated with or endorsed by Microsoft. It automates the Copilot web experience for your own account, so use it responsibly and within Microsoft's terms.
 
 ---
 
@@ -39,17 +39,35 @@ You sign in once in a browser with your Microsoft **or Google** account; your se
 
 ## Why use this?
 
-- **Free:** uses your normal signed-in Copilot, no API billing.
+- **Uses your existing Copilot for work access:** no API key or separate billing setup.
 - **Drop-in OpenAI replacement:** point any OpenAI client at `localhost` and it just works.
-- **Works everywhere you're signed in:** the signed-in path works even in regions where *anonymous* Copilot is blocked (e.g. India).
+- **Works wherever your signed-in account can access Copilot:** the browser session is what matters, not an API key.
 - **Streaming + conversations:** token-by-token output and multi-turn threads addressed by `conversation_id`.
+
+---
+
+## Copilot Access
+
+This repository is written for the Copilot corporate/work experience, which differs from the consumer/free chat flow in a few important ways:
+
+- **Account type:** you sign in with a Microsoft work or school account, not an API key.
+- **Access control:** whether the account can use Copilot depends on your organization’s licensing and policy settings.
+- **Sign-in flow:** access is established in a real browser session, then reused locally through the saved session files.
+- **Reliability:** the project keeps the signed-in browser state, refreshes the token, and handles Cloudflare clearance so repeated runs keep working.
+
+What I did to get it working successfully:
+
+1. Signed in through the browser with the Copilot-enabled corporate Microsoft account.
+2. Let the project save the local session under `session/`.
+3. Sent the one-time warm-up message so the token and clearance were both refreshed.
+4. Reused that saved session for the Python client, CLI, and local server.
 
 ---
 
 ## Requirements
 
 - **Python 3.9+**
-- A **Microsoft account** (the free one you use for Copilot is fine)
+- A **Microsoft work or school account** with Copilot access
 - Works on Windows, macOS, and Linux
 
 ---
@@ -89,11 +107,11 @@ pip install -r requirements.txt
 # Install the browser Playwright needs (one-time)
 playwright install chromium
 
-# Sign in once: a browser opens, log into your Microsoft or Google account
+# Sign in once: a browser opens, log into your Microsoft work or school account
 python -m copilot login
 ```
 
-The browser **closes by itself** once sign-in is detected — you don't need to press Enter or close it manually. After sign-in it sends one short warm-up message that mints the chat token **and** passes Cloudflare's "verify you're human" check in the same step (a brief "finishing setup…" appears, and a tiny throwaway chat lands in your history). If a checkbox shows up, click it in that login window. The steps are logged to `session/login.log` if anything goes wrong. That's it: your session is saved under `session/` (git-ignored, never shared) and reused on every run — so your first request works right away.
+The browser **closes by itself** once sign-in is detected — you don't need to press Enter or close it manually. After sign-in it sends one short warm-up message that mints the chat token **and** passes Cloudflare's "verify you're human" check in the same step (a brief "finishing setup…" appears, and a tiny throwaway chat lands in your history). If a checkbox shows up, click it in that login window. The steps are logged to `session/login.log` if anything goes wrong. That's the success path: the session is saved under `session/` (git-ignored, never shared) and reused on every run, so the first request works right away.
 
 > 🛠️ **Run into trouble during setup or your first run?** Head to the [Troubleshooting](#troubleshooting) section, the bundled diagnostic both *fixes* common issues (captcha/clearance) and *logs* a shareable report.
 
@@ -313,6 +331,7 @@ add a few retries yourself.
 ## Notes & limitations
 
 - **Sign in once, then reuse.** The cached token refreshes automatically; you only re-sign-in if the session fully expires.
+- **Corporate access is account-bound.** If your organization revokes Copilot access or changes policy, you will need to sign in again.
 - **No daily limit, but be reasonable.** Microsoft doesn't impose a daily chat cap, but please use it in moderation, and don't spam or hammer it with automated bulk requests.
 - **One model.** Copilot has no model picker, so the server advertises a single model named `copilot`.
 - **Roughly GPT-4 class.** On GPQA Diamond (198 graduate-level questions, closed-book) it scores **40.9%**, which puts it in the GPT-4 family rather than the reasoning tier (o1/o3). Measured with [tests/gpqa_bench.py](tests/gpqa_bench.py).
