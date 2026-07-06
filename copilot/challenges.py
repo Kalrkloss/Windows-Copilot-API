@@ -1,7 +1,7 @@
 """Copilot chat-socket proof-of-work challenge solvers.
 
 Before streaming, the chat WebSocket sends a challenge that the client must
-answer. These mirror copilot.microsoft.com's own client (hashcash.worker + entry
+answer. These mirror m365.cloud.microsoft's own client (hashcash.worker + entry
 bundle): a ``hashcash`` proof-of-work and an arithmetic ``copilot`` variant.
 """
 

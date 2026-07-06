@@ -4,7 +4,7 @@
 
 ![Windows Copilot API — a free, OpenAI-compatible API for your Microsoft Copilot account](assets/windows-copilot-api-banner.png)
 
-**Using your own Microsoft Copilot account.** No API key, no credits, no paid plan: it turns the free chat at [copilot.microsoft.com](https://copilot.microsoft.com) into an API you can call from code.
+**Using your own Microsoft Copilot account.** No API key, no credits, no paid plan: it turns the free chat at [m365.cloud.microsoft/chat](https://m365.cloud.microsoft/chat) into an API you can call from code.
 
 You can use it in two ways:
 

@@ -10,10 +10,12 @@ import time
 from pathlib import Path
 from typing import Optional
 
-# All session state (browser profile + cached auth) lives under one folder.
-SESSION_DIR = "session"
-DEFAULT_PROFILE_DIR = f"{SESSION_DIR}/profile"
-DEFAULT_AUTH_FILE = f"{SESSION_DIR}/token.json"
+# Session state always lives at <project_root>/session/, regardless of the
+# process CWD. This lets examples/ and the server share the same login.
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+SESSION_DIR = str(_PROJECT_ROOT / "session")
+DEFAULT_PROFILE_DIR = str(_PROJECT_ROOT / "session" / "profile")
+DEFAULT_AUTH_FILE = str(_PROJECT_ROOT / "session" / "token.json")
 # Microsoft access tokens live ~60-90 min; refresh well before that.
 AUTH_MAX_AGE = 50 * 60
 

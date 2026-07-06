@@ -1,57 +1,209 @@
-"""Pure-HTTP Copilot driver.
+"""M365 Copilot driver using the SignalR-based Substrate/Helix backend.
 
-Speaks Microsoft Copilot's consumer chat protocol directly over a
-Cloudflare-impersonating ``curl_cffi`` session — no browser required. This is the
-low-level engine; most callers should use :class:`copilot.client.CopilotClient`.
-See :mod:`copilot.browser` for the Playwright-backed fallback.
-"""
+Speaks the Microsoft 365 Copilot (m365.cloud.microsoft) chat protocol over a
+``curl_cffi`` WebSocket session — no browser required after initial sign-in.
+The protocol is SignalR JSON over
+``wss://substrate.svc.cloud.microsoft/m365Copilot/Chathub/..."""
 
+import base64
 import json
+import os
 import time
 import uuid
 from select import select
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 from urllib.parse import quote
+
+
+def _resolve_ssl_verify(
+    ssl_verify: Union[bool, str, None] = None,
+) -> Union[bool, str]:
+    """Return the ``verify`` value to pass to a curl_cffi Session.
+
+    Resolution order (first match wins):
+
+    1. Explicit ``ssl_verify`` argument.
+    2. ``REQUESTS_CA_BUNDLE`` env var — path to a CA bundle (the same var used
+       by *requests*, *httpx*, *pip*, etc.; your IT team may set it globally).
+    3. ``SSL_CERT_FILE`` env var — alternative CA bundle path.
+    4. ``CURL_CA_BUNDLE`` env var — curl-specific CA bundle path.
+    5. ``COPILOT_SSL_VERIFY=0`` / ``false`` / ``no`` — disable verification (last
+       resort; useful in isolated dev environments).
+    6. Default: ``True`` (verify with bundled CAs).
+
+    In a corporate environment with TLS inspection, set one of the env vars to
+    point at your organisation's root certificate bundle so SSL errors disappear
+    without disabling verification entirely.
+    """
+    if ssl_verify is not None:
+        return ssl_verify
+    for var in ("REQUESTS_CA_BUNDLE", "SSL_CERT_FILE", "CURL_CA_BUNDLE"):
+        val = os.environ.get(var, "")
+        if val:
+            return val
+    raw = os.environ.get("COPILOT_SSL_VERIFY", "").lower()
+    if raw in ("0", "false", "no"):
+        import warnings
+        warnings.warn(
+            "SSL verification is disabled (COPILOT_SSL_VERIFY=0). "
+            "Set REQUESTS_CA_BUNDLE to your corporate CA bundle instead.",
+            stacklevel=4,
+        )
+        return False
+    return True
 
 from curl_cffi.const import CurlECode, CurlInfo
 from curl_cffi.curl import CurlError
 from curl_cffi.requests import Session, CurlWsFlag
 
-# curl_cffi's WebSocket.recv() loops on CURLE_AGAIN forever (select() then retry)
-# and never returns on an idle socket, so we drive the fragment loop ourselves to
-# honour a deadline. CURL_SOCKET_BAD is libcurl's "no active socket" sentinel.
 _CURL_SOCKET_BAD = -1
 
-from .challenges import solve_copilot_challenge, solve_hashcash
 from .models import AbstractProvider, Conversation, ImageResponse, ImageType
-from .protocol import CHAT_WEBSOCKET_URL, CONSENTS_FRAME, SET_OPTIONS_FRAME
+from .protocol import (
+    M365_ALLOWED_MESSAGE_TYPES, M365_OPTION_SETS,
+    M365_WS_HOST, M365_WS_PATH, M365_WS_STATIC_PARAMS, SIGNALR_SEP,
+)
 from .useragent import CHROME_CLIENT_HINTS, CHROME_UA, IMPERSONATE_TARGET
-from .utils import drain_json, is_accepted_format, raise_for_status, to_bytes
+from .utils import is_accepted_format, raise_for_status, to_bytes
+
+
+def _decode_jwt_payload(token: str) -> dict:
+    """Decode the payload of a JWT without verifying the signature."""
+    try:
+        parts = token.split('.')
+        if len(parts) < 2:
+            return {}
+        payload = parts[1]
+        payload += '=' * (4 - len(payload) % 4)  # pad base64
+        return json.loads(base64.urlsafe_b64decode(payload))
+    except Exception:
+        return {}
+
+
+def _build_m365_ws_url(
+    access_token: str,
+    conversation_id: str,
+    session_id: str,
+) -> str:
+    """Construct the full m365 Copilot WebSocket URL.
+
+    Extracts ``oid`` (user object-id) and ``tid`` (tenant-id) from the
+    access-token JWT payload so the URL can be built without a separate
+    identity call.
+    """
+    payload = _decode_jwt_payload(access_token)
+    user_id = payload.get('oid') or payload.get('sub', '')
+    tenant_id = payload.get('tid', '')
+    path = f"{M365_WS_PATH}/{user_id}@{tenant_id}"
+
+    params = [
+        ('chatsessionid',           session_id),
+        ('XRoutingParameterSessionKey', session_id),
+        ('clientrequestid',         session_id),
+        ('X-SessionId',             session_id),
+        ('ConversationId',          conversation_id),
+        ('access_token',            access_token),
+    ]
+    params.extend(M365_WS_STATIC_PARAMS)
+    qs = '&'.join(f"{k}={quote(str(v), safe='')}" for k, v in params)
+    return f"{M365_WS_HOST}{path}?{qs}"
+
+
+def _build_chat_invocation(prompt: str, session_id: str) -> bytes:
+    """Build the SignalR StreamInvocation frame for a chat turn.
+
+    The frame ends with the SignalR record separator ``\\x1e`` as required by
+    the SignalR JSON protocol.
+    """
+    correlation_id = session_id.replace('-', '')
+    frame = {
+        "type": 4,                    # SignalR StreamInvocation
+        "target": "chat",
+        "invocationId": "0",
+        "arguments": [{
+            "source": "officeweb",
+            "clientCorrelationId": correlation_id,
+            "sessionId": session_id,
+            "optionsSets": M365_OPTION_SETS,
+            "streamingMode": "ConciseWithPadding",
+            "options": {},
+            "extraExtensionParameters": {},
+            "allowedMessageTypes": M365_ALLOWED_MESSAGE_TYPES,
+            "sliceIds": [],
+            "threadLevelGptId": {},
+            "traceId": correlation_id,
+            "isStartOfSession": False,
+            "clientInfo": {
+                "clientPlatform": "mcmcopilot-web",
+                "clientAppName": "Office",
+                "clientEntrypoint": "mcmcopilot-officeweb",
+                "clientSessionId": session_id,
+                "ProductCategory": "Chat",
+                "clientAppType": "Web",
+                "productEntryPoint": "ChatPanel",
+                "deviceOS": "Windows",
+                "deviceType": "Desktop",
+                "clientPlatformVersion": "10",
+            },
+            "message": {
+                "author": "user",
+                "inputMethod": "Keyboard",
+                "text": prompt,
+                "entityAnnotationTypes": [
+                    "People", "File", "Event", "Email", "TeamsMessage",
+                ],
+                "requestId": correlation_id,
+                "locale": "en-us",
+                "messageType": "Chat",
+                "experienceType": "Default",
+                "adaptiveCards": [],
+                "clientPreferences": {},
+                "connectedFederatedConnections": ["dummyId"],
+            },
+            "plugins": [{"Id": "BingWebSearch", "Source": "BuiltIn"}],
+            "isSbsSupported": True,
+            "tone": "Magic",
+            "renderReferencesBehindEOS": True,
+            "disconnectBehavior": "continue",
+        }],
+    }
+    return json.dumps(frame, ensure_ascii=False).encode() + SIGNALR_SEP
+
+
+def _drain_signalr(buffer: bytes):
+    """Split ``buffer`` on the SignalR record separator and parse JSON objects.
+
+    Returns ``(list_of_parsed_dicts, remaining_buffer)``.
+    """
+    messages = []
+    while SIGNALR_SEP in buffer:
+        idx = buffer.index(SIGNALR_SEP)
+        raw = buffer[:idx].strip()
+        buffer = buffer[idx + 1:]
+        if raw:
+            try:
+                messages.append(json.loads(raw))
+            except json.JSONDecodeError:
+                pass
+    return messages, buffer
 
 
 class ClearanceRequired(RuntimeError):
-    """The chat socket demanded a Cloudflare Turnstile token we can't mint here.
+    """Raised when the chat endpoint demands re-authentication.
 
-    Copilot gates a turn behind a ``challenge`` frame with ``method`` either
-    ``null`` or ``"cloudflare"`` whenever the session's ``cf_clearance`` cookie is
-    stale or missing (confirmed by capturing the real web client: it answers a
-    ``{method:null}`` frame with a ``method:"cloudflare"`` Turnstile token). A
-    Turnstile token can only be produced by executing Cloudflare's challenge JS in
-    a real browser, so the pure-HTTP driver can't satisfy it. The caller should
-    refresh clearance in a browser (see
-    :meth:`copilot.browser.BrowserCopilot.auto_clear`) and retry the turn.
+    For the consumer copilot.microsoft.com this indicated a Cloudflare Turnstile
+    challenge. For m365.cloud.microsoft it is raised when the access token is
+    expired or has insufficient scope, so the caller should re-run login.
     """
 
 
 class Copilot(AbstractProvider):
-    label = "Microsoft Copilot"
-    url = "https://copilot.microsoft.com"
+    label = "Microsoft 365 Copilot"
+    url = "https://m365.cloud.microsoft"
     working = True
     supports_stream = True
     default_model = "Copilot"
-    needs_auth = False  # consumer chat works anonymously (cookies only)
-    websocket_url = CHAT_WEBSOCKET_URL
-    conversation_url = f"{url}/c/api/conversations"
+    needs_auth = True   # requires a signed-in M365 account
 
     def create_completion(
             self,
@@ -59,207 +211,167 @@ class Copilot(AbstractProvider):
             stream: bool = False,
             proxy: str = None,
             timeout: int = 900,
-            image: ImageType = None,
             conversation: Optional[Conversation] = None,
             conversation_id: str = None,
             return_conversation: bool = False,
             cookies: Dict[str, str] = None,
             access_token: str = None,
             identity_type: str = None,
+            ssl_verify: Union[bool, str, None] = None,
+            image: ImageType = None,
             **kwargs
         ):
-        """Stream a Copilot reply to ``prompt``.
+        """Stream an m365 Copilot reply using the SignalR chat protocol.
 
-        Runs Copilot's own chat protocol over a Cloudflare-impersonating
-        ``curl_cffi`` session: ``POST /c/api/conversations`` then a chat
-        WebSocket (``send`` -> proof-of-work ``challenge`` -> ``appendText``* ->
-        ``done``). The challenge is solved in-process (see
-        :mod:`copilot.challenges`); no browser is required.
+        Connects to ``wss://substrate.svc.cloud.microsoft/m365Copilot/Chathub/…``
+        and speaks the SignalR JSON protocol:
 
-        ``prompt`` is the user message sent straight to the chat socket (the
-        protocol has no separate system/role channel). Anonymous by default;
-        pass ``cookies`` and/or ``access_token`` (e.g. exported from a signed-in
-        browser session) to run as a logged-in user — required where anonymous
-        consumer chat is region-restricted.
+        1. Handshake: ``{"protocol":"json","version":1}\\x1e``
+        2. Ping/pong keep-alive: ``{"type":6}\\x1e``
+        3. Chat invocation: ``{"type":4,"target":"chat",…}\\x1e``
+        4. Stream: ``{"type":1,"target":"update",…}\\x1e`` frames with text
+        5. Completion: ``{"type":3}\\x1e``
 
-        Conversation targeting (first match wins):
+        ``access_token`` must be the ``sydney.readwrite``-scoped token captured
+        by the browser on the first chat turn (see :mod:`copilot.browser`).
+
+        Conversation targeting:
           * ``conversation`` — reuse an existing :class:`Conversation` object;
-          * ``conversation_id`` — resume a conversation by its id string (no
-            create call), e.g. one saved from a previous run;
-          * neither — create a fresh conversation. With ``return_conversation``
-            the new :class:`Conversation` is yielded first.
+          * ``conversation_id`` — resume that conversation id;
+          * neither — start a fresh conversation (``ConversationId`` is a new
+            UUID generated client-side — no REST call needed).
         """
-        # Resolve auth: explicit args win, else fall back to the conversation's.
+        if not access_token and conversation is not None:
+            access_token = conversation.access_token
         if cookies is None and conversation is not None:
             cookies = conversation.cookies
-        if access_token is None and conversation is not None:
-            access_token = conversation.access_token
 
-        # Auth model mirrors the browser:
-        #   * REST calls (conversation create, attachment upload) authenticate by
-        #     COOKIE only. Sending the token as an Authorization: Bearer header
-        #     there gets a 401 (browsers never do it), so we don't.
-        #   * the chat WebSocket carries the signed-in identity via its
-        #     ?accessToken= param. This must be the Copilot chat token (MSAL scope
-        #     ChatAI.ReadWrite, selected in browser._FIND_TOKEN_JS): a
-        #     wrong-audience token 401s the WS upgrade, while *no* token makes the
-        #     chat backend treat the session as anonymous -> chat-service-
-        #     unavailable in geo-restricted regions (e.g. India).
-        # Mirror the real client's URL shape: api-version, then a fresh
-        # per-connection clientSessionId, then the access token. The current chat
-        # backend expects clientSessionId; omitting it is one trigger for an
-        # `invalid-event` rejection.
-        websocket_url = f"{self.websocket_url}&clientSessionId={uuid.uuid4()}"
-        if access_token:
-            websocket_url = f"{websocket_url}&accessToken={quote(access_token)}"
-            # Federated (Google) tokens ride an extra identity-type marker on the
-            # real client's socket; replay it so the upgrade isn't rejected.
-            if identity_type:
-                websocket_url = f"{websocket_url}&X-UserIdentityType={quote(identity_type)}"
+        if not access_token:
+            raise RuntimeError(
+                "No access token available. Run `python -m copilot login` and "
+                "send a chat message in the browser window to capture the token."
+            )
+
+        # Each new conversation and session gets fresh UUIDs.
+        if conversation is not None:
+            conversation_id = conversation.conversation_id
+        elif not conversation_id:
+            conversation_id = str(uuid.uuid4())
+
+        session_id = str(uuid.uuid4())
+        ws_url = _build_m365_ws_url(access_token, conversation_id, session_id)
 
         with Session(
             timeout=timeout,
             proxy=proxy,
-            # Pin the TLS/HTTP2 fingerprint, then override the UA + client hints so
-            # the wire presentation is a fixed Windows Chrome. cf_clearance is bound
-            # to the earning UA; the browsers that earn it present this same string,
-            # so the driver must too — otherwise every turn is gated behind a
-            # Cloudflare Turnstile. See copilot/useragent.py.
             impersonate=IMPERSONATE_TARGET,
             headers={"User-Agent": CHROME_UA, **CHROME_CLIENT_HINTS},
-            cookies=cookies,
+            cookies=cookies or {},
+            verify=_resolve_ssl_verify(ssl_verify),
         ) as session:
-            # Establish cookies + Cloudflare clearance (anonymous is fine).
-            session.get(f"{self.url}/")
+            if return_conversation and not conversation:
+                conv = Conversation(conversation_id, session.cookies.jar)
+                conv.access_token = access_token
+                yield conv
 
-            if conversation is not None:
-                conversation_id = conversation.conversation_id
-            elif conversation_id is not None:
-                pass  # resume an existing conversation by id; skip create
-            else:
-                response = session.post(self.conversation_url)
-                raise_for_status(response)
-                conversation_id = response.json().get("id")
-                if return_conversation:
-                    yield Conversation(conversation_id, session.cookies.jar)
+            wss = session.ws_connect(ws_url)
 
-            images = []
-            if image is not None:
-                data = to_bytes(image)
-                response = session.post(
-                    f"{self.url}/c/api/attachments",
-                    headers={"content-type": is_accepted_format(data)},
-                    data=data,
-                )
-                raise_for_status(response)
-                images.append({"type": "image", "url": response.json().get("url")})
+            # --- SignalR handshake ---
+            handshake = json.dumps({"protocol": "json", "version": 1}).encode() + SIGNALR_SEP
+            wss.send(handshake, CurlWsFlag.TEXT)
+            # Receive handshake response ({}\x1e)
+            self._recv_until_sep(wss, time.time() + 15)
 
-            send_frame = json.dumps({
-                "event": "send",
-                "conversationId": conversation_id,
-                "content": [*images, {"type": "text", "text": prompt}],
-                "mode": "smart",
-                "context": {},
-            }).encode()
+            # --- Send chat StreamInvocation ---
+            wss.send(_build_chat_invocation(prompt, session_id), CurlWsFlag.TEXT)
 
-            wss = session.ws_connect(websocket_url)
-            # Initialise the session before sending: setOptions then
-            # reportLocalConsents. A `send` issued first is rejected with
-            # `invalid-event` (see the handshake constants above).
-            wss.send(json.dumps(SET_OPTIONS_FRAME).encode(), CurlWsFlag.TEXT)
-            wss.send(json.dumps(CONSENTS_FRAME).encode(), CurlWsFlag.TEXT)
-            wss.send(send_frame, CurlWsFlag.TEXT)
-            yield from self._read_stream(wss, send_frame, timeout)
+            # --- Stream response ---
+            yield from self._read_signalr_stream(wss, timeout)
 
-    def _read_stream(self, wss, send_frame: bytes, timeout: int, idle_timeout: int = 60):
-        """Consume chat-socket frames, solving challenges, yielding text/images.
+    def _recv_until_sep(self, wss, deadline: float):
+        """Consume raw WebSocket chunks until a SignalR record separator is seen."""
+        buf = b""
+        while SIGNALR_SEP not in buf:
+            chunk = self._recv_frame(wss, deadline)
+            if chunk is None:
+                break
+            buf += chunk if isinstance(chunk, (bytes, bytearray)) else chunk.encode()
+        return buf
 
-        ``idle_timeout`` bounds how long we wait for the *next* frame: the chat
-        backend normally answers within a second, so prolonged silence means a
-        stalled socket (or a challenge we failed to answer) — we raise rather
-        than block for the full ``timeout``.
+    def _read_signalr_stream(
+        self, wss, timeout: int, idle_timeout: int = 60
+    ):
+        """Consume SignalR frames and yield text deltas until the stream completes.
+
+        Text extraction strategy:
+        - ``update`` frames with ``messages[0].text`` (growing): yield the delta.
+        - ``update`` frames with ``writeAtCursor`` (delta string): yield directly.
+        - ``ReferencesListComplete`` or ``Disengaged`` message type: stop.
+        - ``type=3`` (Completion frame): stop.
+        - ``type=6`` (Ping): respond with a pong.
         """
         buffer = b""
-        is_started = False
-        answered = False
-        image_prompt = None
-        last_msg = None
-
+        accumulated_text = ""
         overall_deadline = time.time() + timeout
+
         while True:
             idle_deadline = time.time() + idle_timeout
             try:
                 chunk = self._recv_frame(wss, min(overall_deadline, idle_deadline))
             except Exception:
-                break  # socket closed/errored -> end of stream
-            if chunk is None:  # deadline passed with no frame
+                return  # socket closed
+            if chunk is None:
                 if time.time() >= overall_deadline:
-                    raise TimeoutError(f"Copilot stream exceeded {timeout}s")
+                    raise TimeoutError(f"M365 Copilot stream exceeded {timeout}s")
                 raise TimeoutError(
-                    f"Copilot chat socket went silent for {idle_timeout}s; "
-                    f"last frame was {last_msg!r}."
+                    f"M365 Copilot chat socket went silent for {idle_timeout}s."
                 )
 
             buffer += chunk if isinstance(chunk, (bytes, bytearray)) else chunk.encode()
-            messages, buffer = drain_json(buffer)
-            for msg in messages:
-                last_msg = msg
-                event = msg.get("event")
-                if event == "challenge":
-                    method = msg.get("method")
-                    # A Cloudflare Turnstile (method null/"cloudflare") can arrive
-                    # at any point — including *after* a proof-of-work challenge was
-                    # already answered this turn — and we can never mint its token
-                    # here. Surface it regardless of ``answered`` so a stale
-                    # cf_clearance becomes a clean ClearanceRequired instead of a
-                    # silent 60s idle timeout (the frame would otherwise be ignored).
-                    if method in (None, "cloudflare"):
-                        raise ClearanceRequired(
-                            "Copilot chat is gated behind a Cloudflare Turnstile "
-                            f"(challenge method={method!r}); cf_clearance is stale "
-                            "or missing. Refresh clearance in a browser "
-                            "(copilot.browser.BrowserCopilot.auto_clear) and retry."
-                        )
-                    if answered:
-                        continue  # already answered the PoW for this turn; ignore echo
-                    token = self._solve_challenge(msg)
-                    if token is None:
-                        raise RuntimeError(
-                            f"Unsolvable Copilot challenge (method={method!r}). "
-                            "Microsoft may have escalated to a browser-only challenge; "
-                            "fall back to copilot.browser.BrowserCopilot."
-                        )
-                    wss.send(json.dumps({
-                        "event": "challengeResponse",
-                        "token": token,
-                        "method": msg.get("method"),
-                        "id": msg.get("id"),
-                    }).encode(), CurlWsFlag.TEXT)
-                    answered = True
-                    # The client re-sends the held message after a challenge.
-                    wss.send(send_frame, CurlWsFlag.TEXT)
-                elif event == "appendText":
-                    is_started = True
-                    yield msg.get("text")
-                elif event == "generatingImage":
-                    image_prompt = msg.get("prompt")
-                elif event == "imageGenerated":
-                    yield ImageResponse(msg.get("url"), image_prompt, {"preview": msg.get("thumbnailUrl")})
-                elif event == "done":
-                    return
-                elif event == "error":
-                    code = msg.get("errorCode") or msg
-                    if code == "chat-service-unavailable":
-                        raise RuntimeError(
-                            "Copilot error: chat-service-unavailable. The chat backend is "
-                            "typically geo-restricted; if you are outside a supported region, "
-                            "retry via a proxy in a supported region, e.g. "
-                            "create_completion(..., proxy='http://user:pass@host:port')."
-                        )
-                    raise RuntimeError(f"Copilot error: {code}")
+            messages, buffer = _drain_signalr(buffer)
 
-        if not is_started:
-            raise RuntimeError(f"Invalid response: {last_msg}")
+            for msg in messages:
+                msg_type = msg.get("type")
+
+                if msg_type == 6:  # Ping — respond with pong
+                    try:
+                        wss.send(
+                            json.dumps({"type": 6}).encode() + SIGNALR_SEP,
+                            CurlWsFlag.TEXT,
+                        )
+                    except Exception:
+                        pass
+                    continue
+
+                if msg_type == 3:  # Completion — stream ended
+                    return
+
+                if msg_type == 1 and msg.get("target") == "update":
+                    args = msg.get("arguments", [{}])
+                    update = args[0] if args else {}
+
+                    # Delta streaming via writeAtCursor
+                    delta = update.get("writeAtCursor")
+                    if delta:
+                        accumulated_text += delta
+                        yield delta
+
+                    # Full accumulated text in messages[]
+                    for m in update.get("messages", []):
+                        if m.get("author") != "bot":
+                            continue
+                        # Stop signals
+                        if m.get("messageType") in (
+                            "ReferencesListComplete", "Disengaged", "EndOfRequest",
+                        ):
+                            return
+                        text = m.get("text", "")
+                        if text and text != accumulated_text:
+                            if text.startswith(accumulated_text):
+                                new_chars = text[len(accumulated_text):]
+                                if new_chars:
+                                    yield new_chars
+                            accumulated_text = text
 
     @staticmethod
     def _recv_frame(wss, deadline: float):
@@ -287,29 +399,3 @@ class Copilot(AbstractProvider):
                 if remaining <= 0:
                     return None
                 select([sock_fd], [], [], min(0.5, remaining))
-
-    @staticmethod
-    def _solve_challenge(msg: dict):
-        """Return the challenge-response token, or ``None`` if we can't solve it.
-
-        Copilot's chat socket precedes the answer with a challenge frame. The
-        proof-of-work variants (``hashcash``, ``copilot``) are computed in-process
-        (:mod:`copilot.challenges`). A ``None`` return means the challenge needs a
-        browser-solved token and the caller must surface that.
-
-        An *empty* challenge (``method``/``parameter`` both null) is NOT a no-op:
-        capturing the real web client showed it answers ``{method:null}`` with a
-        ``method:"cloudflare"`` Turnstile token. It only appears when
-        ``cf_clearance`` is stale, and curl_cffi can't mint a Turnstile token — so
-        we return ``None`` (the caller raises :class:`ClearanceRequired`). The old
-        "ack an empty challenge with an empty token" behaviour was wrong: it made
-        the socket wait for a token that never came and silently time out.
-        """
-        method = msg.get("method")
-        parameter = msg.get("parameter")
-        if method == "hashcash" and parameter:
-            return solve_hashcash(parameter)
-        if method == "copilot" and parameter:
-            return solve_copilot_challenge(parameter)
-        # method:null / 'cloudflare' (Turnstile) / unknown PoW: browser-only token.
-        return None

@@ -29,7 +29,7 @@ from dataclasses import dataclass, field
 from typing import Generator, List, Optional, Union
 
 from .auth import AUTH_MAX_AGE, load_auth
-from .driver import ClearanceRequired, Copilot
+from .driver import ClearanceRequired, Copilot, Union, _resolve_ssl_verify
 from .models import Conversation, ImageResponse
 
 
@@ -108,6 +108,7 @@ class CopilotClient:
         max_age: int = AUTH_MAX_AGE,
         interactive_clear: bool = True,
         headless_clear: bool = False,
+        ssl_verify: Union[bool, str, None] = None,
     ):
         self._driver = Copilot()
         self._anonymous = anonymous
@@ -115,6 +116,7 @@ class CopilotClient:
         self._max_age = max_age
         self._interactive_clear = interactive_clear
         self._headless_clear = headless_clear
+        self._ssl_verify = ssl_verify
         self._auth: Optional[dict] = None
 
     def stream(
@@ -168,6 +170,7 @@ class CopilotClient:
                 cookies=auth["cookies"] if auth else None,
                 access_token=auth["access_token"] if auth else None,
                 identity_type=auth.get("identity_type") if auth else None,
+                ssl_verify=_resolve_ssl_verify(self._ssl_verify),
                 **kwargs,
             )
             if conversation_id is None:

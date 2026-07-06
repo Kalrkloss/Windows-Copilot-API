@@ -45,7 +45,7 @@ LOGIN_LOG = SESSION_DIR / "login.log"
 WS_LOG = SESSION_DIR / "ws_capture.log"
 REPORT = SESSION_DIR / "diagnostic_report.txt"
 
-COPILOT_URL = "https://copilot.microsoft.com/"
+COPILOT_URL = "https://m365.cloud.microsoft/chat/"
 CHAT_HINT = "/c/api/chat"  # the chat socket; other sockets are telemetry noise
 
 # Packages whose versions matter for reproducing chat/auth issues.

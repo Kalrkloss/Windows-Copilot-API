@@ -1,0 +1,1397 @@
+[
+  {
+    "direction": "sent",
+    "parsed": {
+      "protocol": "json",
+      "version": 1
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "type": 6
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "arguments": [
+        {
+          "source": "officeweb",
+          "clientCorrelationId": "09134a3f488ec241f99ed134a098e797",
+          "sessionId": "09134a3f-488e-c241-f99e-d134a098e797",
+          "optionsSets": [
+            "search_result_progress_messages_with_search_queries",
+            "update_textdoc_response_after_streaming",
+            "deepleo_networking_timeout_10minutes_canmore",
+            "cwc_flux_image",
+            "cwc_code_interpreter",
+            "cwc_code_interpreter_amsfix",
+            "cwcfluxgptv",
+            "flux_v3_gptv_enable_upload_multi_image_in_turn_wo_ch",
+            "gptvnorm2048",
+            "cwc_code_interpreter_citation_fix",
+            "code_interpreter_interactive_charts",
+            "cwc_code_interpreter_interactive_charts_inline_image",
+            "code_interpreter_matplotlib_patching",
+            "cwc_fileupload_odb",
+            "update_memory_plugin",
+            "add_custom_instructions",
+            "cwc_flux_v3",
+            "flux_v3_progress_messages",
+            "enable_batch_token_processing",
+            "enable_gg_gpt",
+            "flux_v3_references",
+            "flux_v3_references_entities",
+            "flux_v3_image_gen_enable_dimensions",
+            "flux_v3_image_gen_enable_non_watermarked_storage",
+            "flux_v3_image_gen_enable_icon_dimensions",
+            "flux_v3_image_gen_enable_system_text_with_params",
+            "flux_v3_image_gen_enable_designer_dimensions_meta_prompting_in_system_prompts",
+            "flux_v3_image_gen_enable_story",
+            "rich_responses",
+            "pages_citations",
+            "pages_citations_multiturn"
+          ],
+          "streamingMode": "ConciseWithPadding",
+          "options": {},
+          "extraExtensionParameters": {},
+          "allowedMessageTypes": [
+            "Chat",
+            "Suggestion",
+            "InternalSearchQuery",
+            "Disengaged",
+            "InternalLoaderMessage",
+            "Progress",
+            "GeneratedCode",
+            "RenderCardRequest",
+            "AdsQuery",
+            "SemanticSerp",
+            "GenerateContentQuery",
+            "GenerateGraphicArt",
+            "SearchQuery",
+            "ConfirmationCard",
+            "AuthError",
+            "DeveloperLogs",
+            "TriggerPlugin",
+            "HintInvocation",
+            "MemoryUpdate",
+            "EndOfRequest",
+            "TriggerConfirmation",
+            "ResumeInvokeAction",
+            "ResumeUserInputRequest",
+            "TriggerUserInputRequest",
+            "EscapeHatch",
+            "TriggerPluginAuth",
+            "ResumePluginAuth",
+            "SideBySide",
+            "ReferencesListComplete",
+            "SwitchRespondingEndpoint"
+          ],
+          "sliceIds": [],
+          "threadLevelGptId": {},
+          "traceId": "09134a3f488ec241f99ed134a098e797",
+          "isStartOfSession": false,
+          "clientInfo": {
+            "clientPlatform": "mcmcopilot-web",
+            "clientAppName": "Office",
+            "clientEntrypoint": "mcmcopilot-officeweb",
+            "clientSessionId": "09134a3f-488e-c241-f99e-d134a098e797",
+            "ProductCategory": "Chat",
+            "clientAppType": "Web",
+            "productEntryPoint": "ChatPanel",
+            "deviceOS": "Windows",
+            "deviceType": "Desktop",
+            "clientPlatformVersion": "10"
+          },
+          "message": {
+            "author": "user",
+            "inputMethod": "Keyboard",
+            "text": "hi",
+            "entityAnnotationTypes": [
+              "People",
+              "File",
+              "Event",
+              "Email",
+              "TeamsMessage"
+            ],
+            "requestId": "09134a3f488ec241f99ed134a098e797",
+            "locationInfo": {
+              "timeZoneOffset": 2,
+              "timeZone": "Europe/Berlin"
+            },
+            "locale": "de-de",
+            "messageType": "Chat",
+            "experienceType": "Default",
+            "adaptiveCards": [],
+            "clientPreferences": {},
+            "connectedFederatedConnections": [
+              "dummyId"
+            ]
+          },
+          "plugins": [
+            {
+              "Id": "BingWebSearch",
+              "Source": "BuiltIn"
+            }
+          ],
+          "isSbsSupported": true,
+          "tone": "Magic",
+          "renderReferencesBehindEOS": true,
+          "disconnectBehavior": "continue"
+        }
+      ],
+      "invocationId": "0",
+      "target": "chat",
+      "type": 4
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "arguments": [
+        {
+          "Timestamps": {
+            "ConnectionStart": "2026-07-06T08:15:41.223Z",
+            "UserInputStart": "2026-07-06T08:15:41.278Z",
+            "ConnectionEstablished": "2026-07-06T08:15:41.602Z",
+            "UserInputSubmit": "2026-07-06T08:15:42.447Z"
+          }
+        }
+      ],
+      "target": "Metrics",
+      "type": 1
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "arguments": [
+        {
+          "Timestamps": {
+            "RequestSent": "2026-07-06T08:15:42.503Z",
+            "FirstTokenReceived": "2026-07-06T08:15:43.922Z",
+            "LastTokenReceived": "2026-07-06T08:15:44.200Z",
+            "FirstTokenRendered": "2026-07-06T08:15:43.928Z"
+          }
+        }
+      ],
+      "target": "Metrics",
+      "type": 1
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "protocol": "json",
+      "version": 1
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "type": 6
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "arguments": [
+        {
+          "source": "officeweb",
+          "clientCorrelationId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+          "sessionId": "09134a3f-488e-c241-f99e-d134a098e797",
+          "optionsSets": [
+            "search_result_progress_messages_with_search_queries",
+            "update_textdoc_response_after_streaming",
+            "deepleo_networking_timeout_10minutes_canmore",
+            "cwc_flux_image",
+            "cwc_code_interpreter",
+            "cwc_code_interpreter_amsfix",
+            "cwcfluxgptv",
+            "flux_v3_gptv_enable_upload_multi_image_in_turn_wo_ch",
+            "gptvnorm2048",
+            "cwc_code_interpreter_citation_fix",
+            "code_interpreter_interactive_charts",
+            "cwc_code_interpreter_interactive_charts_inline_image",
+            "code_interpreter_matplotlib_patching",
+            "cwc_fileupload_odb",
+            "update_memory_plugin",
+            "add_custom_instructions",
+            "cwc_flux_v3",
+            "flux_v3_progress_messages",
+            "enable_batch_token_processing",
+            "enable_gg_gpt",
+            "flux_v3_references",
+            "flux_v3_references_entities",
+            "flux_v3_image_gen_enable_dimensions",
+            "flux_v3_image_gen_enable_non_watermarked_storage",
+            "flux_v3_image_gen_enable_icon_dimensions",
+            "flux_v3_image_gen_enable_system_text_with_params",
+            "flux_v3_image_gen_enable_designer_dimensions_meta_prompting_in_system_prompts",
+            "flux_v3_image_gen_enable_story",
+            "rich_responses",
+            "pages_citations",
+            "pages_citations_multiturn"
+          ],
+          "streamingMode": "ConciseWithPadding",
+          "options": {},
+          "extraExtensionParameters": {},
+          "allowedMessageTypes": [
+            "Chat",
+            "Suggestion",
+            "InternalSearchQuery",
+            "Disengaged",
+            "InternalLoaderMessage",
+            "Progress",
+            "GeneratedCode",
+            "RenderCardRequest",
+            "AdsQuery",
+            "SemanticSerp",
+            "GenerateContentQuery",
+            "GenerateGraphicArt",
+            "SearchQuery",
+            "ConfirmationCard",
+            "AuthError",
+            "DeveloperLogs",
+            "TriggerPlugin",
+            "HintInvocation",
+            "MemoryUpdate",
+            "EndOfRequest",
+            "TriggerConfirmation",
+            "ResumeInvokeAction",
+            "ResumeUserInputRequest",
+            "TriggerUserInputRequest",
+            "EscapeHatch",
+            "TriggerPluginAuth",
+            "ResumePluginAuth",
+            "SideBySide",
+            "ReferencesListComplete",
+            "SwitchRespondingEndpoint"
+          ],
+          "sliceIds": [],
+          "threadLevelGptId": {},
+          "traceId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+          "isStartOfSession": false,
+          "clientInfo": {
+            "clientPlatform": "mcmcopilot-web",
+            "clientAppName": "Office",
+            "clientEntrypoint": "mcmcopilot-officeweb",
+            "clientSessionId": "09134a3f-488e-c241-f99e-d134a098e797",
+            "ProductCategory": "Chat",
+            "clientAppType": "Web",
+            "productEntryPoint": "ChatPanel",
+            "deviceOS": "Windows",
+            "deviceType": "Desktop",
+            "clientPlatformVersion": "10"
+          },
+          "message": {
+            "author": "user",
+            "inputMethod": "Keyboard",
+            "text": "hi",
+            "entityAnnotationTypes": [
+              "People",
+              "File",
+              "Event",
+              "Email",
+              "TeamsMessage"
+            ],
+            "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+            "locationInfo": {
+              "timeZoneOffset": 2,
+              "timeZone": "Europe/Berlin"
+            },
+            "locale": "de-de",
+            "messageType": "Chat",
+            "experienceType": "Default",
+            "adaptiveCards": [],
+            "clientPreferences": {},
+            "connectedFederatedConnections": [
+              "dummyId"
+            ]
+          },
+          "plugins": [
+            {
+              "Id": "BingWebSearch",
+              "Source": "BuiltIn"
+            }
+          ],
+          "isSbsSupported": true,
+          "tone": "Magic",
+          "renderReferencesBehindEOS": true,
+          "disconnectBehavior": "continue"
+        }
+      ],
+      "invocationId": "0",
+      "target": "chat",
+      "type": 4
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "arguments": [
+        {
+          "Timestamps": {
+            "ConnectionStart": "2026-07-06T08:15:46.341Z",
+            "UserInputStart": "2026-07-06T08:15:46.350Z",
+            "UserInputSubmit": "2026-07-06T08:15:46.497Z",
+            "ConnectionEstablished": "2026-07-06T08:15:46.636Z"
+          }
+        }
+      ],
+      "target": "Metrics",
+      "type": 1
+    }
+  },
+  {
+    "direction": "sent",
+    "parsed": {
+      "arguments": [
+        {
+          "Timestamps": {
+            "RequestSent": "2026-07-06T08:15:46.637Z",
+            "FirstTokenReceived": "2026-07-06T08:15:47.955Z",
+            "LastTokenReceived": "2026-07-06T08:15:49.068Z",
+            "FirstTokenRendered": "2026-07-06T08:15:47.957Z",
+            "SuggestionsRendered": "2026-07-06T08:15:49.070Z",
+            "SuggestionsReceived": "2026-07-06T08:15:49.717Z"
+          }
+        }
+      ],
+      "target": "Metrics",
+      "type": 1
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {}
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "nonce": "pZz5eizKzWB5ZUowFj4B+Q==",
+          "requestId": "09134a3f488ec241f99ed134a098e797",
+          "throttling": {
+            "maxNumUserMessagesInConversation": 600,
+            "numUserMessagesInConversation": 1,
+            "numLongDocSummaryUserMessagesInConversation": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "cursor": {
+            "j": "$['8a7eb312-9a95-408d-ad22-b4c338ec0e2f'].adaptiveCards[0].body[0].text",
+            "p": -1
+          },
+          "messages": [
+            {
+              "text": "Hello",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:43.8544646+00:00",
+              "timestamp": "2026-07-06T08:15:43.8544646+00:00",
+              "messageId": "8a7eb312-9a95-408d-ad22-b4c338ec0e2f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hello",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "contentOrigin": "DeepLeo"
+            }
+          ],
+          "nonce": "lutqZWRCH0kWW/gGC5w/Mw==",
+          "requestId": "09134a3f488ec241f99ed134a098e797"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hello! How",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:43.8544646+00:00",
+              "timestamp": "2026-07-06T08:15:43.8544646+00:00",
+              "messageId": "8a7eb312-9a95-408d-ad22-b4c338ec0e2f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hello! How",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo",
+              "spokenText": "Hello!"
+            }
+          ],
+          "nonce": "JO3IO4jZE1lBobo0hu00ng==",
+          "requestId": "09134a3f488ec241f99ed134a098e797"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hello! How can",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:43.8544646+00:00",
+              "timestamp": "2026-07-06T08:15:43.8544646+00:00",
+              "messageId": "8a7eb312-9a95-408d-ad22-b4c338ec0e2f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hello! How can",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo"
+            }
+          ],
+          "nonce": "f77E84wgbdezkSUIX2MLRA==",
+          "requestId": "09134a3f488ec241f99ed134a098e797"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "writeAtCursor": " I",
+          "references": {},
+          "nonce": "j/gmO5yci3fNQf12Yp9V7w=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "writeAtCursor": " help you today?",
+          "references": {},
+          "nonce": "nvx96FrGVaLxl9SdK1W/Mg=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hello! How can I help you today? \ud83d\ude0a",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:43.8544646+00:00",
+              "timestamp": "2026-07-06T08:15:43.8544646+00:00",
+              "messageId": "8a7eb312-9a95-408d-ad22-b4c338ec0e2f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hello! How can I help you today? \ud83d\ude0a",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo",
+              "spokenText": "How can I help you today?"
+            }
+          ],
+          "nonce": "3RgnrF85HM/0VwdKATTMAA==",
+          "requestId": "09134a3f488ec241f99ed134a098e797"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hello! How can I help you today? \ud83d\ude0a",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:43.8544646+00:00",
+              "timestamp": "2026-07-06T08:15:43.8544646+00:00",
+              "messageId": "8a7eb312-9a95-408d-ad22-b4c338ec0e2f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hello! How can I help you today? \ud83d\ude0a",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo",
+              "scores": [
+                {
+                  "component": "BotOffense",
+                  "score": 2.882350793443557e-13
+                },
+                {
+                  "component": "dea_violation",
+                  "score": 4.644881368380887e-09
+                }
+              ]
+            }
+          ],
+          "nonce": "VeWFWycA7J5tDmQwXHMqng==",
+          "isLastUpdate": true,
+          "requestId": "09134a3f488ec241f99ed134a098e797"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "patches": [
+            {
+              "value": "",
+              "operationType": 2,
+              "path": "/8a7eb312-9a95-408d-ad22-b4c338ec0e2f/spokenText",
+              "op": "replace",
+              "from": null
+            }
+          ],
+          "nonce": "rWpciC/YRDn8F+7hJWBQuA=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "author": "bot",
+              "createdAt": "2026-07-06T08:15:44.3303275+00:00",
+              "timestamp": "2026-07-06T08:15:44.3303275+00:00",
+              "messageId": "c942e2ba-330c-4a38-b6e6-2625d94b669e",
+              "requestId": "09134a3f488ec241f99ed134a098e797",
+              "messageType": "ReferencesListComplete",
+              "offense": "None",
+              "turnCount": 1
+            }
+          ],
+          "nonce": "5xxBCiilZZRB8f+v21aETQ=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 2,
+      "invocationId": "0",
+      "item": {
+        "messages": [
+          {
+            "text": "hi",
+            "author": "user",
+            "from": {
+              "id": "b2387d6c-0e6f-4f7f-a033-1c476ee851b3",
+              "name": null,
+              "displayName": null,
+              "partnerId": null
+            },
+            "createdAt": "2026-07-06T08:15:42.4920521+00:00",
+            "timestamp": "2026-07-06T10:15:42.4828427+02:00",
+            "locale": "de-de",
+            "market": "en-us",
+            "locationInfo": {
+              "country": "DE",
+              "state": "HE",
+              "city": "Frankfurt/Main",
+              "zipCode": "60313",
+              "timeZone": "Europe/Berlin",
+              "timeZoneOffset": 2,
+              "latitude": 50.117653,
+              "longitude": 8.682283,
+              "sourceType": 1,
+              "locationProvider": "XapBlisLocationProvider",
+              "timestamp": {
+                "utcTime": 639189225429527868,
+                "utcOffset": 0,
+                "isDateOnly": null
+              },
+              "isImplicitLocationIntent": false
+            },
+            "messageId": "09134a3f488ec241f99ed134a098e797",
+            "requestId": "09134a3f488ec241f99ed134a098e797",
+            "offense": "None",
+            "adaptiveCards": [],
+            "contentOrigin": "officeweb",
+            "inputMethod": "Keyboard",
+            "turnCount": 1,
+            "storageMessageId": "1783325745437",
+            "entityAnnotationTypes": [
+              "People",
+              "File",
+              "Event",
+              "Email",
+              "TeamsMessage"
+            ],
+            "clientPreferences": {},
+            "connectedFederatedConnections": [
+              "dummyId"
+            ]
+          },
+          {
+            "text": "Hello! How can I help you today? \ud83d\ude0a",
+            "turnState": "Completed",
+            "author": "bot",
+            "responseIdentifier": "Default",
+            "createdAt": "2026-07-06T08:15:43.8544646+00:00",
+            "timestamp": "2026-07-06T08:15:43.8544646+00:00",
+            "messageId": "8a7eb312-9a95-408d-ad22-b4c338ec0e2f",
+            "requestId": "09134a3f488ec241f99ed134a098e797",
+            "offense": "Unknown",
+            "adaptiveCards": [
+              {
+                "type": "AdaptiveCard",
+                "version": "1.0",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "Hello! How can I help you today? \ud83d\ude0a",
+                    "wrap": true
+                  }
+                ]
+              }
+            ],
+            "sourceAttributions": [],
+            "references": {},
+            "contentOrigin": "DeepLeo",
+            "turnCount": 1
+          }
+        ],
+        "firstNewMessageIndex": 1,
+        "defaultChatName": "hi",
+        "conversationTransferToken": "eyJ0eXBlIjoiRnVsbENvbnZlcnNhdGlvbiIsImNvbnZlcnNhdGlvbklkIjoiNWExNDk1ZWYtYWFjNy00YWUzLTk3OTEtOWFlZTJiNjVlYmIxIn0=",
+        "turnState": "Completed",
+        "conversationId": "5a1495ef-aac7-4ae3-9791-9aee2b65ebb1",
+        "requestId": "09134a3f488ec241f99ed134a098e797",
+        "conversationExpiryTime": "2026-08-04T08:15:45.2189085Z",
+        "telemetry": {
+          "startTime": "2026-07-06T08:15:41.3231201Z",
+          "userMessageRequestStartTime": null
+        },
+        "throttling": {
+          "maxNumUserMessagesInConversation": 600,
+          "numUserMessagesInConversation": 1,
+          "numLongDocSummaryUserMessagesInConversation": 0,
+          "metering": {
+            "TenantDataAccess": {
+              "remainingAllowance": 0
+            },
+            "ImageAnalysis": {
+              "remainingAllowance": 0
+            },
+            "LLMOnly": {
+              "remainingAllowance": 100
+            },
+            "VisualCreator": {
+              "remainingAllowance": 0
+            },
+            "PersonalDataAccess": {
+              "remainingAllowance": 0
+            },
+            "GraphicArt": {
+              "remainingAllowance": 0
+            },
+            "CodeInterpreter": {
+              "remainingAllowance": 0
+            },
+            "FileReference": {
+              "remainingAllowance": 3
+            },
+            "DeepResearch": {
+              "remainingAllowance": 0
+            },
+            "CopilotTuning": {
+              "remainingAllowance": 0
+            },
+            "DeepWork": {
+              "remainingAllowance": 0
+            },
+            "WXPAgentMode": {
+              "remainingAllowance": 7
+            },
+            "NotebookCowork": {
+              "remainingAllowance": 0
+            }
+          }
+        },
+        "result": {
+          "value": "Success",
+          "message": "Hello! How can I help you today? \ud83d\ude0a",
+          "serviceVersion": "1.0.03470.39393"
+        }
+      }
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 3,
+      "invocationId": "0"
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {}
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "nonce": "PNdkOOLPnb2Tm88g/VD74Q==",
+          "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+          "throttling": {
+            "maxNumUserMessagesInConversation": 600,
+            "numUserMessagesInConversation": 2,
+            "numLongDocSummaryUserMessagesInConversation": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "cursor": {
+            "j": "$['9a36b1e0-5a53-4a56-b894-7371caebfd4f'].adaptiveCards[0].body[0].text",
+            "p": -1
+          },
+          "messages": [
+            {
+              "text": "Hi",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:47.9070681+00:00",
+              "timestamp": "2026-07-06T08:15:47.9070681+00:00",
+              "messageId": "9a36b1e0-5a53-4a56-b894-7371caebfd4f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hi",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "contentOrigin": "DeepLeo"
+            }
+          ],
+          "nonce": "wmNNYCdLzQaXRKCTiS3r+w==",
+          "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hi! \ud83d\udc4b",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:47.9070681+00:00",
+              "timestamp": "2026-07-06T08:15:47.9070681+00:00",
+              "messageId": "9a36b1e0-5a53-4a56-b894-7371caebfd4f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hi! \ud83d\udc4b",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo",
+              "spokenText": "Hi!"
+            }
+          ],
+          "nonce": "DXETHBWMSc4VJicONDwDIA==",
+          "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hi! \ud83d\udc4b What can I do",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:47.9070681+00:00",
+              "timestamp": "2026-07-06T08:15:47.9070681+00:00",
+              "messageId": "9a36b1e0-5a53-4a56-b894-7371caebfd4f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hi! \ud83d\udc4b What can I do",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo"
+            }
+          ],
+          "nonce": "0mum/gKwdzkRJd/oklzvOg==",
+          "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "writeAtCursor": " for",
+          "references": {},
+          "nonce": "A7BXg6o9e9fd82BO1YGk2A=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "writeAtCursor": " you today?",
+          "references": {},
+          "nonce": "iVasOxux8mpglrsXhHHMWw=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hi! \ud83d\udc4b What can I do for you today?",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:47.9070681+00:00",
+              "timestamp": "2026-07-06T08:15:47.9070681+00:00",
+              "messageId": "9a36b1e0-5a53-4a56-b894-7371caebfd4f",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hi! \ud83d\udc4b What can I do for you today?",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo",
+              "scores": [
+                {
+                  "component": "BotOffense",
+                  "score": 2.707717986971711e-13
+                },
+                {
+                  "component": "dea_violation",
+                  "score": 6.758262498631447e-09
+                }
+              ]
+            }
+          ],
+          "nonce": "hVvqxfKOeXeVQXd1adERSA==",
+          "isLastUpdate": true,
+          "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "patches": [
+            {
+              "value": "What can I do for you today?",
+              "operationType": 2,
+              "path": "/9a36b1e0-5a53-4a56-b894-7371caebfd4f/spokenText",
+              "op": "replace",
+              "from": null
+            }
+          ],
+          "nonce": "kg3wNr/+mP1zl1zUYBpBfg=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "author": "bot",
+              "createdAt": "2026-07-06T08:15:48.4036207+00:00",
+              "timestamp": "2026-07-06T08:15:48.4036207+00:00",
+              "messageId": "bc54ce75-31ab-4753-8be0-cceda3a15572",
+              "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+              "messageType": "ReferencesListComplete",
+              "offense": "None",
+              "turnCount": 2
+            }
+          ],
+          "nonce": "LRW5tvpLhi3stXbHRIlYCg=="
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 1,
+      "target": "update",
+      "arguments": [
+        {
+          "messages": [
+            {
+              "text": "Hi! \ud83d\udc4b What can I do for you today?",
+              "author": "bot",
+              "responseIdentifier": "Default",
+              "createdAt": "2026-07-06T08:15:47.9070681+00:00",
+              "timestamp": "2026-07-06T08:15:47.9070681+00:00",
+              "messageId": "9a36b1e0-5a53-4a56-b894-7371caebfd4f",
+              "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+              "offense": "Unknown",
+              "adaptiveCards": [
+                {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Hi! \ud83d\udc4b What can I do for you today?",
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "sourceAttributions": [],
+              "references": {},
+              "contentOrigin": "DeepLeo",
+              "scores": [
+                {
+                  "component": "BotOffense",
+                  "score": 2.707717986971711e-13
+                },
+                {
+                  "component": "dea_violation",
+                  "score": 6.758262498631447e-09
+                }
+              ],
+              "suggestedResponses": [
+                {
+                  "commandText": "Can you tell me a joke?",
+                  "suggestionCategory": "DynamicTurnN",
+                  "text": "Can you tell me a joke?",
+                  "hiddenText": "DynamicTurnN",
+                  "author": "user",
+                  "createdAt": "2026-07-06T08:15:49.0100635+00:00",
+                  "timestamp": "2026-07-06T08:15:49.0100635+00:00",
+                  "messageId": "dd2b07c0-25b9-4c05-892a-b57da98bf0be",
+                  "messageType": "Suggestion",
+                  "offense": "Unknown",
+                  "contentOrigin": "SuggestionsProviderService"
+                },
+                {
+                  "commandText": "Show me today's weather.",
+                  "suggestionCategory": "DynamicTurnN",
+                  "text": "Show me today's weather.",
+                  "hiddenText": "DynamicTurnN",
+                  "author": "user",
+                  "createdAt": "2026-07-06T08:15:49.0100663+00:00",
+                  "timestamp": "2026-07-06T08:15:49.0100663+00:00",
+                  "messageId": "670d044e-b922-4415-97a3-34abd0434b4c",
+                  "messageType": "Suggestion",
+                  "offense": "Unknown",
+                  "contentOrigin": "SuggestionsProviderService"
+                },
+                {
+                  "commandText": "Help me plan a trip.",
+                  "suggestionCategory": "DynamicTurnN",
+                  "text": "Help me plan a trip.",
+                  "hiddenText": "DynamicTurnN",
+                  "author": "user",
+                  "createdAt": "2026-07-06T08:15:49.0100667+00:00",
+                  "timestamp": "2026-07-06T08:15:49.0100667+00:00",
+                  "messageId": "3a2ed3d3-5da7-433b-97d9-d1d4cb096381",
+                  "messageType": "Suggestion",
+                  "offense": "Unknown",
+                  "contentOrigin": "SuggestionsProviderService"
+                }
+              ],
+              "spokenText": ""
+            }
+          ],
+          "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2"
+        }
+      ]
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 2,
+      "invocationId": "0",
+      "item": {
+        "messages": [
+          {
+            "text": "hi",
+            "author": "user",
+            "from": {
+              "id": "b2387d6c-0e6f-4f7f-a033-1c476ee851b3",
+              "name": null,
+              "displayName": null,
+              "partnerId": null
+            },
+            "createdAt": "2026-07-06T08:15:46.6235657+00:00",
+            "timestamp": "2026-07-06T10:15:46.6145856+02:00",
+            "locale": "de-de",
+            "market": "en-us",
+            "locationInfo": {
+              "country": "DE",
+              "state": "HE",
+              "city": "Frankfurt/Main",
+              "zipCode": "60313",
+              "timeZone": "Europe/Berlin",
+              "timeZoneOffset": 2,
+              "latitude": 50.117653,
+              "longitude": 8.682283,
+              "sourceType": 1,
+              "locationProvider": "XapBlisLocationProvider",
+              "timestamp": {
+                "utcTime": 639189225429527868,
+                "utcOffset": 0,
+                "isDateOnly": null
+              }
+            },
+            "messageId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+            "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+            "offense": "None",
+            "adaptiveCards": [],
+            "contentOrigin": "officeweb",
+            "inputMethod": "Keyboard",
+            "turnCount": 2,
+            "storageMessageId": "1783325749154",
+            "entityAnnotationTypes": [
+              "People",
+              "File",
+              "Event",
+              "Email",
+              "TeamsMessage"
+            ],
+            "clientPreferences": {},
+            "connectedFederatedConnections": [
+              "dummyId"
+            ]
+          },
+          {
+            "text": "Hi! \ud83d\udc4b What can I do for you today?",
+            "turnState": "Completed",
+            "author": "bot",
+            "responseIdentifier": "Default",
+            "createdAt": "2026-07-06T08:15:47.9070681+00:00",
+            "timestamp": "2026-07-06T08:15:47.9070681+00:00",
+            "messageId": "9a36b1e0-5a53-4a56-b894-7371caebfd4f",
+            "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+            "offense": "Unknown",
+            "adaptiveCards": [
+              {
+                "type": "AdaptiveCard",
+                "version": "1.0",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "Hi! \ud83d\udc4b What can I do for you today?",
+                    "wrap": true
+                  }
+                ]
+              }
+            ],
+            "sourceAttributions": [],
+            "references": {},
+            "contentOrigin": "DeepLeo",
+            "suggestedResponses": [
+              {
+                "commandText": "Can you tell me a joke?",
+                "suggestionCategory": "DynamicTurnN",
+                "text": "Can you tell me a joke?",
+                "hiddenText": "DynamicTurnN",
+                "author": "user",
+                "createdAt": "2026-07-06T08:15:49.0100635+00:00",
+                "timestamp": "2026-07-06T08:15:49.0100635+00:00",
+                "messageId": "dd2b07c0-25b9-4c05-892a-b57da98bf0be",
+                "messageType": "Suggestion",
+                "offense": "Unknown",
+                "contentOrigin": "SuggestionsProviderService"
+              },
+              {
+                "commandText": "Show me today's weather.",
+                "suggestionCategory": "DynamicTurnN",
+                "text": "Show me today's weather.",
+                "hiddenText": "DynamicTurnN",
+                "author": "user",
+                "createdAt": "2026-07-06T08:15:49.0100663+00:00",
+                "timestamp": "2026-07-06T08:15:49.0100663+00:00",
+                "messageId": "670d044e-b922-4415-97a3-34abd0434b4c",
+                "messageType": "Suggestion",
+                "offense": "Unknown",
+                "contentOrigin": "SuggestionsProviderService"
+              },
+              {
+                "commandText": "Help me plan a trip.",
+                "suggestionCategory": "DynamicTurnN",
+                "text": "Help me plan a trip.",
+                "hiddenText": "DynamicTurnN",
+                "author": "user",
+                "createdAt": "2026-07-06T08:15:49.0100667+00:00",
+                "timestamp": "2026-07-06T08:15:49.0100667+00:00",
+                "messageId": "3a2ed3d3-5da7-433b-97d9-d1d4cb096381",
+                "messageType": "Suggestion",
+                "offense": "Unknown",
+                "contentOrigin": "SuggestionsProviderService"
+              }
+            ],
+            "turnCount": 2
+          }
+        ],
+        "firstNewMessageIndex": 1,
+        "defaultChatName": "hi",
+        "conversationTransferToken": "eyJ0eXBlIjoiRnVsbENvbnZlcnNhdGlvbiIsImNvbnZlcnNhdGlvbklkIjoiNWExNDk1ZWYtYWFjNy00YWUzLTk3OTEtOWFlZTJiNjVlYmIxIn0=",
+        "turnState": "Completed",
+        "conversationId": "5a1495ef-aac7-4ae3-9791-9aee2b65ebb1",
+        "requestId": "576df1fb-95ee-4fe2-9817-d6be70bd0ec2",
+        "conversationExpiryTime": "2026-08-04T08:15:49.0406215Z",
+        "telemetry": {
+          "startTime": "2026-07-06T08:15:46.4053705Z",
+          "userMessageRequestStartTime": null
+        },
+        "throttling": {
+          "maxNumUserMessagesInConversation": 600,
+          "numUserMessagesInConversation": 2,
+          "numLongDocSummaryUserMessagesInConversation": 0,
+          "metering": {
+            "TenantDataAccess": {
+              "remainingAllowance": 0
+            },
+            "ImageAnalysis": {
+              "remainingAllowance": 0
+            },
+            "LLMOnly": {
+              "remainingAllowance": 100
+            },
+            "VisualCreator": {
+              "remainingAllowance": 0
+            },
+            "PersonalDataAccess": {
+              "remainingAllowance": 0
+            },
+            "GraphicArt": {
+              "remainingAllowance": 0
+            },
+            "CodeInterpreter": {
+              "remainingAllowance": 0
+            },
+            "FileReference": {
+              "remainingAllowance": 3
+            },
+            "DeepResearch": {
+              "remainingAllowance": 0
+            },
+            "CopilotTuning": {
+              "remainingAllowance": 0
+            },
+            "DeepWork": {
+              "remainingAllowance": 0
+            },
+            "WXPAgentMode": {
+              "remainingAllowance": 7
+            },
+            "NotebookCowork": {
+              "remainingAllowance": 0
+            }
+          }
+        },
+        "result": {
+          "value": "Success",
+          "message": "Hi! \ud83d\udc4b What can I do for you today?",
+          "serviceVersion": "1.0.03470.39393"
+        }
+      }
+    }
+  },
+  {
+    "direction": "recv",
+    "parsed": {
+      "type": 3,
+      "invocationId": "0"
+    }
+  }
+]

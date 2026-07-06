@@ -3,59 +3,84 @@
 Both the pure-HTTP driver (:mod:`copilot.driver`) and the browser driver
 (:mod:`copilot.browser`) speak the *same* chat-socket protocol, so the wire
 shapes live here once. When Microsoft changes the protocol, recapture it with
-``tests/diagnostic.py`` (its browser capture writes ``session/ws_capture.log``)
-and update this file — both drivers follow.
+``tests/capture_signalr.py`` and update this file.
 
-Captured from a live copilot.microsoft.com session. The connect sequence is:
+Captured from a live m365.cloud.microsoft session. The connect sequence is:
 
-    ws_connect(CHAT_WEBSOCKET_URL + &clientSessionId=<uuid> [+ &accessToken=<tok>])
-    -> send SET_OPTIONS_FRAME
-    -> send CONSENTS_FRAME
-    -> send {"event":"send", ..., "mode":"smart", "context":{}}
-    -> receive appendText* then done
-
-A `send` issued *before* the setOptions/consents handshake is rejected by the
-backend with ``error: invalid-event``.
+    ws_connect(M365_WS_URL_TEMPLATE + per-session params)
+    -> send {"protocol":"json","version":1} + SIGNALR_SEP
+    -> receive {} + SIGNALR_SEP   (handshake OK)
+    -> send chat StreamInvocation (type=4, target="chat") + SIGNALR_SEP
+    -> receive update frames (type=1, target="update") with streaming text
+    -> receive completion frame (type=3) when stream ends
 """
 
-# Base chat socket; callers append &clientSessionId=<uuid> and, when signed in,
-# &accessToken=<token>.
-CHAT_WEBSOCKET_URL = "wss://copilot.microsoft.com/c/api/chat?api-version=2"
+# SignalR JSON protocol record separator.
+SIGNALR_SEP = b"\x1e"
 
-# First handshake frame: advertise the features/cards/UI components the client
-# supports. The lists only describe what a UI *could* render; a text prompt still
-# streams back as plain `appendText`, so they're harmless for this bridge.
-SET_OPTIONS_FRAME = {
-    "event": "setOptions",
-    "supportedFeatures": [
-        "partial-generated-images",
-        "composer-prefill-conversation-action",
-        "composer-send-conversation-action-v2",
-        "side-by-side-comparison",
-        "session-duration-nudge",
-        "compose-email-html",
-    ],
-    "supportedCards": [
-        "weather", "local", "image", "sports", "video", "healthcareEntity",
-        "healthcareInfo", "healthRecordsConnectNewProvider", "healthRecordsUpdate",
-        "suggestHealth", "chart", "ads", "safetyHelpline", "quiz", "finance",
-        "recipe", "personalArtifacts", "flashcard", "navigation", "person",
-        "powerPointCreator", "consentV2", "composeEmail", "createCalendarEvent",
-        "modifyCalendarEvent", "deleteCalendarEvent", "practiceTest", "tapToReveal",
-    ],
-    "supportedUIComponents": {
-        "Badge": "1.2", "Basic": "1.2", "Box": "1.2", "Button": "1.2",
-        "Card": "1.2", "Caption": "1.2", "Chart": "1.2", "Checkbox": "1.2",
-        "Col": "1.2", "DatePicker": "1.3", "Divider": "1.2", "Form": "1.2",
-        "Icon": "1.2", "Image": "1.2", "Label": "1.2", "ListView": "1.2",
-        "ListViewItem": "1.2", "Map": "1.3", "Markdown": "1.2", "Pressable": "1.3",
-        "RadioGroup": "1.3", "Row": "1.2", "Select": "1.3", "Spacer": "1.2",
-        "Table": "1.3", "Table.Cell": "1.3", "Table.Row": "1.3", "Text": "1.2",
-        "Textarea": "1.3", "Title": "1.2", "Transition": "1.2",
-    },
-    "ads": {"supportedTypes": ["text", "product", "multimedia", "tourActivity", "propertyPromotion"]},
-    "supportedActions": [],
-}
+# Base WebSocket host for m365 Copilot (Helix/Substrate backend).
+# The full URL requires userId, tenantId, and per-call UUIDs — see driver.py.
+M365_WS_HOST = "wss://substrate.svc.cloud.microsoft"
+M365_WS_PATH = "/m365Copilot/Chathub"   # /{userId}@{tenantId} appended at runtime
 
-# Second handshake frame: declare no locally-granted consents.
-CONSENTS_FRAME = {"event": "reportLocalConsents", "grantedConsents": []}
+# Feature flags sent in every chat request.
+# Captured from a live session; controls which capabilities the server enables.
+M365_OPTION_SETS = [
+    "search_result_progress_messages_with_search_queries",
+    "update_textdoc_response_after_streaming",
+    "deepleo_networking_timeout_10minutes_canmore",
+    "cwc_flux_image",
+    "cwc_code_interpreter",
+    "cwc_code_interpreter_amsfix",
+    "cwcfluxgptv",
+    "gptvnorm2048",
+    "cwc_code_interpreter_citation_fix",
+    "cwc_fileupload_odb",
+    "add_custom_instructions",
+    "cwc_flux_v3",
+    "flux_v3_progress_messages",
+    "enable_batch_token_processing",
+    "enable_gg_gpt",
+    "flux_v3_references",
+    "rich_responses",
+    "pages_citations",
+    "pages_citations_multiturn",
+]
+
+# Message types the client accepts from the server.
+M365_ALLOWED_MESSAGE_TYPES = [
+    "Chat",
+    "Suggestion",
+    "InternalSearchQuery",
+    "Disengaged",
+    "InternalLoaderMessage",
+    "Progress",
+    "GeneratedCode",
+    "SearchQuery",
+    "AuthError",
+    "HintInvocation",
+    "MemoryUpdate",
+    "EndOfRequest",
+    "ReferencesListComplete",
+    "SwitchRespondingEndpoint",
+]
+
+# Static query-string parameters appended to every WebSocket URL.
+# Per-call params (chatsessionid, ConversationId, access_token) are added in driver.py.
+M365_WS_STATIC_PARAMS = (
+    ('source', '"officeweb"'),
+    ('product', 'Office'),
+    ('agentHost', 'Bizchat.FullScreen'),
+    ('licenseType', 'Starter'),
+    ('isEdu', 'false'),
+    ('agent', 'web'),
+    ('scenario', 'OfficeWebIncludedCopilot'),
+)
+
+# Legacy consumer copilot constants — kept for reference only.
+# Consumer copilot at copilot.microsoft.com uses a different protocol and is
+# not targeted by this project anymore.
+_LEGACY_CHAT_WEBSOCKET_URL = "wss://copilot.microsoft.com/c/api/chat?api-version=2"
+_LEGACY_SET_OPTIONS_FRAME = {"event": "setOptions", "supportedFeatures": []}
+_LEGACY_CONSENTS_FRAME = {"event": "reportLocalConsents", "grantedConsents": []}
+

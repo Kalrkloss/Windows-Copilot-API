@@ -1,0 +1,2279 @@
+﻿Loading m365 chat page...
+Message sent via: [role='textbox']
+Waiting for chat response...
+
+=== Captured 3 substrate.svc.cloud.microsoft WebSockets ===
+
+--- WebSocket 1 ---
+  Path: /m365Copilot/Chathub/b2387d6c-0e6f-4f7f-a033-1c476ee851b3@eb70b763-b6d7-4486-8555-8831709a784e
+  ConversationId: 3b2c1b26-2700-466c-9a6c-cf1a2cc9f297
+  access_token start: eyJ0eXAiOiJKV1QiLCJub25jZSI6Im8wa2Y2UlJYQzZoQy1DcH...
+  Sent frames: 4
+  Received frames: 12
+
+  SENT frames:
+    {
+  "protocol": "json",
+  "version": 1
+}
+    {
+  "type": 6
+}
+    {
+  "arguments": [
+    {
+      "source": "officeweb",
+      "clientCorrelationId": "75740612a0f049fe1573acbfecebe3fd",
+      "sessionId": "75740612-a0f0-49fe-1573-acbfecebe3fd",
+      "optionsSets": [
+        "search_result_progress_messages_with_search_queries",
+        "update_textdoc_response_after_streaming",
+        "deepleo_networking_timeout_10minutes_canmore",
+        "cwc_flux_image",
+        "cwc_code_interpreter",
+        "cwc_code_interpreter_amsfix",
+        "cwcfluxgptv",
+        "flux_v3_gptv_enable_upload_multi_image_in_turn_wo_ch",
+        "gptvnorm2048",
+        "cwc_code_interpreter_citation_fix",
+        "code_interpreter_interactive_charts",
+        "cwc_code_interpreter_interactive_charts_inline_image",
+        "code_interpreter_matplotlib_patching",
+        "cwc_fileupload_odb",
+        "update_memory_plugin",
+        "add_custom_instructions",
+        "cwc_flux_v3",
+        "flux_v3_progress_messages",
+        "enable_batch_token_processing",
+        "enable_gg_gpt",
+        "flux_v3_references",
+        "flux_v3_references_entities",
+        "flux_v3_image_gen_enable_dimensions",
+        "flux_v3_image_gen_enable_non_watermarked_storage",
+        "flux_v3_image_gen_enable_icon_dimensions",
+        "flux_v3_image_gen_enable_system_text_with_params",
+        "flux_v3_image_gen_enable_designer_dimensions_meta_prompting_in_system_prompts",
+        "flux_v3_image_gen_enable_story",
+        "rich_responses",
+        "pages_citations",
+        "pages_citations_multiturn"
+      ],
+      "streamingMode": "ConciseWithPadding",
+      "options": {},
+      "extraExtensionParameters": {},
+      "allowedMessageTypes": [
+        "Chat",
+        "Suggestion",
+        "InternalSearchQuery",
+        "Disengaged",
+        "InternalLoaderMessage",
+        "Progress",
+        "GeneratedCode",
+        "RenderCardRequest",
+        "AdsQuery",
+        "SemanticSerp",
+        "GenerateContentQuery",
+        "GenerateGraphicArt",
+        "SearchQuery",
+        "ConfirmationCard",
+        "AuthError",
+        "DeveloperLogs",
+        "TriggerPlugin",
+        "HintInvocation",
+        "MemoryUpdate",
+        "EndOfRequest",
+        "TriggerConfirmation",
+        "ResumeInvokeAction",
+        "ResumeUserInputRequest",
+        "TriggerUserInputRequest",
+        "EscapeHatch",
+        "TriggerPluginAuth",
+        "ResumePluginAuth",
+        "SideBySide",
+        "ReferencesListComplete",
+        "SwitchRespondingEndpoint"
+      ],
+      "sliceIds": [],
+      "threadLevelGptId": {},
+      "traceId": "75740612a0f049fe1573acbfecebe3fd",
+      "isStartOfSession": false,
+      "clientInfo": {
+        "clientPlatform": "mcmcopilot-web",
+        "clientAppName": "Office",
+        "clientEntrypoint": "mcmcopilot-officeweb",
+        "clientSessionId": "75740612-a0f0-49fe-1573-acbfecebe3fd",
+        "ProductCategory": "Chat",
+        "clientAppType": "Web",
+        "productEntryPoint": "ChatPanel",
+        "deviceOS": "Windows",
+        "deviceType": "Desktop",
+ 
+    {
+  "arguments": [
+    {
+      "Timestamps": {
+        "ConnectionStart": "2026-07-06T08:13:09.078Z",
+        "UserInputStart": "2026-07-06T08:13:09.200Z",
+        "ConnectionEstablished": "2026-07-06T08:13:09.386Z",
+        "UserInputSubmit": "2026-07-06T08:13:10.112Z"
+      }
+    }
+  ],
+  "target": "Metrics",
+  "type": 1
+}
+    {
+  "arguments": [
+    {
+      "Timestamps": {
+        "RequestSent": "2026-07-06T08:13:10.171Z",
+        "FirstTokenReceived": "2026-07-06T08:13:11.123Z",
+        "LastTokenReceived": "2026-07-06T08:13:11.412Z",
+        "FirstTokenRendered": "2026-07-06T08:13:11.131Z"
+      }
+    }
+  ],
+  "target": "Metrics",
+  "type": 1
+}
+
+  ALL RECEIVED frames:
+    [0] {}
+    [1] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "nonce": "r/Vkv3QvIwSZxTVQldpmNA==",
+      "requestId": "75740612a0f049fe1573acbfecebe3fd",
+      "throttling": {
+        "maxNumUserMessagesInConversation": 600,
+        "numUserMessagesInConversation": 1,
+        "numLongDocSummaryUserMessagesInConversation": 0
+      }
+    }
+  ]
+}
+    [2] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "cursor": {
+        "j": "$['a62063aa-48f1-40d3-847a-728b808b07a1'].adaptiveCards[0].body[0].text",
+        "p": -1
+      },
+      "messages": [
+        {
+          "text": "Hello",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:11.0699299+00:00",
+          "timestamp": "2026-07-06T08:13:11.0699299+00:00",
+          "messageId": "a62063aa-48f1-40d3-847a-728b808b07a1",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Hello",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "contentOrigin": "DeepLeo"
+        }
+      ],
+      "nonce": "FUj3GcLjcXUn3Vzj6zRsQQ==",
+      "requ
+    [3] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "Hello! How",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:11.0699299+00:00",
+          "timestamp": "2026-07-06T08:13:11.0699299+00:00",
+          "messageId": "a62063aa-48f1-40d3-847a-728b808b07a1",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Hello! How",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "references": {},
+          "contentOrigin": "DeepLeo",
+          "spokenText": "Hello!"
+        }
+      ],
+      "nonce": "W5PTe1Hx0og/gVnQ386oUQ==",
+      "requestId": "75740612a0f049fe1573acbfecebe3fd"
+    }
+  ]
+}
+    [4] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "Hello! How can",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:11.0699299+00:00",
+          "timestamp": "2026-07-06T08:13:11.0699299+00:00",
+          "messageId": "a62063aa-48f1-40d3-847a-728b808b07a1",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Hello! How can",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "references": {},
+          "contentOrigin": "DeepLeo"
+        }
+      ],
+      "nonce": "lPJns2s0eN4jMOkcl/l52A==",
+      "requestId": "75740612a0f049fe1573acbfecebe3fd"
+    }
+  ]
+}
+    [5] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " I help",
+      "references": {},
+      "nonce": "OdLnjJ9A4gzJwEpWA7OsNg=="
+    }
+  ]
+}
+    [6] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " you today?",
+      "references": {},
+      "nonce": "mkJje7zV4FA+95DbGMeBdg=="
+    }
+  ]
+}
+    [7] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "Hello! How can I help you today? \ud83d\ude0a",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:11.0699299+00:00",
+          "timestamp": "2026-07-06T08:13:11.0699299+00:00",
+          "messageId": "a62063aa-48f1-40d3-847a-728b808b07a1",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Hello! How can I help you today? \ud83d\ude0a",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "references": {},
+          "contentOrigin": "DeepLeo",
+          "spokenText": "How can I help you today?"
+        }
+      ],
+      "nonce": "QT0sM4za
+    [8] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "Hello! How can I help you today? \ud83d\ude0a",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:11.0699299+00:00",
+          "timestamp": "2026-07-06T08:13:11.0699299+00:00",
+          "messageId": "a62063aa-48f1-40d3-847a-728b808b07a1",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Hello! How can I help you today? \ud83d\ude0a",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "references": {},
+          "contentOrigin": "DeepLeo",
+          "scores": [
+            {
+              "component": "BotOffense",
+              "sco
+    [9] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "patches": [
+        {
+          "value": "",
+          "operationType": 2,
+          "path": "/a62063aa-48f1-40d3-847a-728b808b07a1/spokenText",
+          "op": "replace",
+          "from": null
+        }
+      ],
+      "nonce": "qvtqQpiRGU3RnSISmdXKPQ=="
+    }
+  ]
+}
+    [10] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "author": "bot",
+          "createdAt": "2026-07-06T08:13:11.9099262+00:00",
+          "timestamp": "2026-07-06T08:13:11.9099262+00:00",
+          "messageId": "211a0d28-3548-4a3f-b17d-afac0ed24dac",
+          "requestId": "75740612a0f049fe1573acbfecebe3fd",
+          "messageType": "ReferencesListComplete",
+          "offense": "None",
+          "turnCount": 1
+        }
+      ],
+      "nonce": "vuVq3U9HwiGwfelG9PyNuQ=="
+    }
+  ]
+}
+    [11] {
+  "type": 2,
+  "invocationId": "0",
+  "item": {
+    "messages": [
+      {
+        "text": "test",
+        "author": "user",
+        "from": {
+          "id": "b2387d6c-0e6f-4f7f-a033-1c476ee851b3",
+          "name": null,
+          "displayName": null,
+          "partnerId": null
+        },
+        "createdAt": "2026-07-06T08:13:10.1532259+00:00",
+        "timestamp": "2026-07-06T10:13:10.1479327+02:00",
+        "locale": "de-de",
+        "market": "en-us",
+        "locationInfo": {
+          "country": "DE",
+          "state": "HE",
+          "city": "Frankfurt/Main",
+          "zipCode": "60313",
+          "timeZone": "Europe/Berlin",
+          "timeZoneOffset": 2,
+          "latitude": 50.117653,
+          "longitude": 8.682283,
+          "sourceType": 1,
+          "locationProvider": "XapBlisLocationProvider",
+          "timestamp": {
+            "utcTime": 639189223904227093,
+            "utcOffset": 0,
+            "isDateOnly": null
+          },
+          "isImplicitLocationInt
+    [11] {
+  "type": 3,
+  "invocationId": "0"
+}
+
+--- WebSocket 2 ---
+  Path: /m365Copilot/Chathub/b2387d6c-0e6f-4f7f-a033-1c476ee851b3@eb70b763-b6d7-4486-8555-8831709a784e
+  ConversationId: 3b2c1b26-2700-466c-9a6c-cf1a2cc9f297
+  access_token start: eyJ0eXAiOiJKV1QiLCJub25jZSI6Im8wa2Y2UlJYQzZoQy1DcH...
+  Sent frames: 4
+  Received frames: 44
+
+  SENT frames:
+    {
+  "protocol": "json",
+  "version": 1
+}
+    {
+  "type": 6
+}
+    {
+  "arguments": [
+    {
+      "source": "officeweb",
+      "clientCorrelationId": "77fb61c0-251a-4bc0-a997-e2265b8e75e1",
+      "sessionId": "75740612-a0f0-49fe-1573-acbfecebe3fd",
+      "optionsSets": [
+        "search_result_progress_messages_with_search_queries",
+        "update_textdoc_response_after_streaming",
+        "deepleo_networking_timeout_10minutes_canmore",
+        "cwc_flux_image",
+        "cwc_code_interpreter",
+        "cwc_code_interpreter_amsfix",
+        "cwcfluxgptv",
+        "flux_v3_gptv_enable_upload_multi_image_in_turn_wo_ch",
+        "gptvnorm2048",
+        "cwc_code_interpreter_citation_fix",
+        "code_interpreter_interactive_charts",
+        "cwc_code_interpreter_interactive_charts_inline_image",
+        "code_interpreter_matplotlib_patching",
+        "cwc_fileupload_odb",
+        "update_memory_plugin",
+        "add_custom_instructions",
+        "cwc_flux_v3",
+        "flux_v3_progress_messages",
+        "enable_batch_token_processing",
+        "enable_gg_gpt",
+        "flux_v3_references",
+        "flux_v3_references_entities",
+        "flux_v3_image_gen_enable_dimensions",
+        "flux_v3_image_gen_enable_non_watermarked_storage",
+        "flux_v3_image_gen_enable_icon_dimensions",
+        "flux_v3_image_gen_enable_system_text_with_params",
+        "flux_v3_image_gen_enable_designer_dimensions_meta_prompting_in_system_prompts",
+        "flux_v3_image_gen_enable_story",
+        "rich_responses",
+        "pages_citations",
+        "pages_citations_multiturn"
+      ],
+      "streamingMode": "ConciseWithPadding",
+      "options": {},
+      "extraExtensionParameters": {},
+      "allowedMessageTypes": [
+        "Chat",
+        "Suggestion",
+        "InternalSearchQuery",
+        "Disengaged",
+        "InternalLoaderMessage",
+        "Progress",
+        "GeneratedCode",
+        "RenderCardRequest",
+        "AdsQuery",
+        "SemanticSerp",
+        "GenerateContentQuery",
+        "GenerateGraphicArt",
+        "SearchQuery",
+        "ConfirmationCard",
+        "AuthError",
+        "DeveloperLogs",
+        "TriggerPlugin",
+        "HintInvocation",
+        "MemoryUpdate",
+        "EndOfRequest",
+        "TriggerConfirmation",
+        "ResumeInvokeAction",
+        "ResumeUserInputRequest",
+        "TriggerUserInputRequest",
+        "EscapeHatch",
+        "TriggerPluginAuth",
+        "ResumePluginAuth",
+        "SideBySide",
+        "ReferencesListComplete",
+        "SwitchRespondingEndpoint"
+      ],
+      "sliceIds": [],
+      "threadLevelGptId": {},
+      "traceId": "77fb61c0-251a-4bc0-a997-e2265b8e75e1",
+      "isStartOfSession": false,
+      "clientInfo": {
+        "clientPlatform": "mcmcopilot-web",
+        "clientAppName": "Office",
+        "clientEntrypoint": "mcmcopilot-officeweb",
+        "clientSessionId": "75740612-a0f0-49fe-1573-acbfecebe3fd",
+        "ProductCategory": "Chat",
+        "clientAppType": "Web",
+        "productEntryPoint": "ChatPanel",
+        "deviceOS": "Windows",
+        "deviceType": "Des
+    {
+  "arguments": [
+    {
+      "Timestamps": {
+        "ConnectionStart": "2026-07-06T08:13:13.893Z",
+        "UserInputStart": "2026-07-06T08:13:13.901Z",
+        "ConnectionEstablished": "2026-07-06T08:13:14.245Z",
+        "UserInputSubmit": "2026-07-06T08:13:15.817Z"
+      }
+    }
+  ],
+  "target": "Metrics",
+  "type": 1
+}
+    {
+  "arguments": [
+    {
+      "Timestamps": {
+        "RequestSent": "2026-07-06T08:13:15.882Z",
+        "FirstServiceResponseReceived": "2026-07-06T08:13:18.001Z",
+        "FirstServiceResponseRendered": "2026-07-06T08:13:18.002Z",
+        "FirstTokenReceived": "2026-07-06T08:13:19.644Z",
+        "LastTokenReceived": "2026-07-06T08:13:24.501Z",
+        "FirstTokenRendered": "2026-07-06T08:13:19.647Z",
+        "SuggestionsRendered": "2026-07-06T08:13:24.503Z",
+        "SuggestionsReceived": "2026-07-06T08:13:25.538Z"
+      }
+    }
+  ],
+  "target": "Metrics",
+  "type": 1
+}
+
+  ALL RECEIVED frames:
+    [0] {}
+    [1] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "nonce": "6RfxYFHJ/VVgyKCwO7ynbQ==",
+      "requestId": "77fb61c0-251a-4bc0-a997-e2265b8e75e1",
+      "throttling": {
+        "maxNumUserMessagesInConversation": 600,
+        "numUserMessagesInConversation": 2,
+        "numLongDocSummaryUserMessagesInConversation": 0
+      }
+    }
+  ]
+}
+    [2] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "OK, ich suche nach \u201eFrankfurt weather today\u201c...",
+          "isExpanded": false,
+          "isPersisted": false,
+          "addToChainOfThought": false,
+          "contentType": "SearchResults",
+          "searchQueries": [
+            "Frankfurt weather today"
+          ],
+          "author": "bot",
+          "createdAt": "2026-07-06T08:13:17.9559624+00:00",
+          "timestamp": "2026-07-06T08:13:17.9559624+00:00",
+          "messageId": "d378264b-d3be-4864-bb74-615012e45619",
+          "requestId": "77fb61c0-251a-4bc0-a997-e2265b8e75e1",
+          "messageType": "Progress",
+          "offense": "None",
+          "turnCount": 2
+        }
+      ],
+      "nonce": "HY9Fv5Kwi9x4tdMitt45Ag==",
+      "requestId": "77fb61c0-251a-4bc0-a997-e2265b8e75e1"
+    }
+  ]
+}
+    [3] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "cursor": {
+        "j": "$['723f8dad-9901-484f-b464-a23ba1e155ea'].adaptiveCards[0].body[0].text",
+        "p": -1
+      },
+      "messages": [
+        {
+          "text": "**",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "contentOrigin": "DeepLeo"
+        }
+      ],
+      "nonce": "KsNY9+od/ChCM3WEwVSA5Q==",
+      "requestId"
+    [4] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": "Weather",
+      "references": {},
+      "nonce": "l4qETCEDRtLdFwegj00cKg=="
+    }
+  ]
+}
+    [5] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " for Frankfurt today (6 July 2026)**",
+      "references": {},
+      "nonce": "PGrOAuLMAHwUw6MfAApu2A=="
+    }
+  ]
+}
+    [6] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": "\n\n",
+      "references": {},
+      "nonce": "Psr6h7CD6cSvtkVaO4ZJvQ=="
+    }
+  ]
+}
+    [7] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "references": {},
+          "contentOrigin": "DeepLeo",
+          "spokenText": "Weather for Frankfurt 
+    [8] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions:",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions:",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "references": {},
+          "contentOrigin": "DeepLeo"
+        }
+      ],
+      "nonce": "cjMiZz6/Nw1
+    [9] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " **Mostly cloudy**, around **",
+      "references": {},
+      "nonce": "6YG9onJQ0no1CMwHjwl/xg=="
+    }
+  ]
+}
+    [10] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": "20\u00b0C (68\u00b0F)**,",
+      "references": {},
+      "nonce": "hCOCCsTkMnOwG9TE2ZpLrw=="
+    }
+  ]
+}
+    [11] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " feels like",
+      "references": {},
+      "nonce": "NJ2Ua7Q2InthxXRjokhOJQ=="
+    }
+  ]
+}
+    [12] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " **22\u00b0C (",
+      "references": {},
+      "nonce": "LJem12BVSXXcFMSrzBL6VQ=="
+    }
+  ]
+}
+    [13] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with",
+ 
+    [14] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a
+    [15] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00
+    [16] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (
+    [17] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast:",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C 
+    [18] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " **Partly sunny to mostly cloudy**, with",
+      "references": {
+        "1-695321": {
+          "targetLink": "https://a.msn.com/54/EN-US/ct50.1109,8.6795?pageocid=ansmsnweather",
+          "displayData": {
+            "type": "text/json",
+            "renderType": "CITATION",
+            "content": "{\"metadata\":{\"type\":\"Web\",\"referenceType\":0,\"hasAttachments\":false,\"referenceId\":\"turn2search1\",\"responseRequested\":false,\"suppressCitation\":false,\"isExternal\":false,\"isExcluded\":false,\"citationRefId\":\"turn2search1\"},\"label\":\"1\",\"providerDisplayName\":\"MSN Weather\"}"
+          },
+          "isCitedInResponse": true
+        }
+      },
+      "nonce": "Mruc+u7pS6NT4+2sp+c7lg=="
+    }
+  ]
+}
+    [19] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " a high near **30\u00b0C (86\u00b0F)** and a",
+      "references": {},
+      "nonce": "NUmXeUj+8oSZljrQIoHqfA=="
+    }
+  ]
+}
+    [20] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " low around",
+      "references": {},
+      "nonce": "LP7GaRyMy3Km4M3mM673fQ=="
+    }
+  ]
+}
+    [21] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+         
+    [22] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+  
+    [23] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+    [24] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+      
+    [25] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1e155ea",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+
+    [26] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " and dry weather is",
+      "references": {
+        "2-b17270": {
+          "targetLink": "https://www.meteoblue.com/en/weather/week/frankfurt-am-main_germany_2925533",
+          "displayData": {
+            "type": "text/json",
+            "renderType": "CITATION",
+            "content": "{\"metadata\":{\"type\":\"Web\",\"referenceType\":0,\"hasAttachments\":false,\"referenceId\":\"turn2search7\",\"responseRequested\":false,\"suppressCitation\":false,\"isExternal\":false,\"isExcluded\":false,\"citationRefId\":\"turn2search7\"},\"label\":\"2\",\"providerDisplayName\":\"Weather Frankfurt am Main - meteoblue\",\"snippet\":\"Weather Frankfurt am Main - meteoblue Weather Frankfurt am Main Hesse , Germany , 50.12\u00b0N 8.68\u00b0E, 113m asl 66\\u2009\u00b0F 8:50 AD FREE Remove ads for 9 \u20ac per year 5 min Are you a fan of skiing, hiking, or spending time in the mountains? Join our survey A major redesign
+    [27] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " expected to continue through the week, with temperatures climbing into the low",
+      "references": {},
+      "nonce": "7DeVbUZgbLWZfC/rAhPcKg=="
+    }
+  ]
+}
+    [28] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " **30s\u00b0C",
+      "references": {},
+      "nonce": "9NZ0ygD6g/38Yne+WDlKow=="
+    }
+  ]
+}
+    [29] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": "** later in the",
+      "references": {},
+      "nonce": "MOJCBFFmVQAKxcy0BJj+JQ=="
+    }
+  ]
+}
+    [30] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageId": "723f8dad-9901-484f-b464-a23ba1
+    [31] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2search1\ue202turn2search6\ue201\n\n",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+          "messageI
+    [32] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2search1\ue202turn2search6\ue201\n\n\u2600\ufe0f",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:19.5947214+00:00",
+       
+    [33] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2search1\ue202turn2search6\ue201\n\n\u2600\ufe0f A warm summer day overall",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:19.5947214+00:00",
+          "timestamp": "2026-07-06T08:13:
+    [34] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": ",",
+      "references": {
+        "3-6f05fc": {
+          "targetLink": "https://www.weather-forecast.com/locations/Frankfurt-am-Main/forecasts/latest",
+          "displayData": {
+            "type": "text/json",
+            "renderType": "CITATION",
+            "content": "{\"metadata\":{\"type\":\"Web\",\"referenceType\":0,\"hasAttachments\":false,\"referenceId\":\"turn2search6\",\"responseRequested\":false,\"suppressCitation\":false,\"isExternal\":false,\"isExcluded\":false,\"citationRefId\":\"turn2search6\"},\"label\":\"3\",\"providerDisplayName\":\"Frankfurt am Main Weather Forecast\",\"lastUpdatedDate\":\"2026-7-6 00:00:00\",\"snippet\":\"Frankfurt am Main Weather Forecast Frankfurt am Main Weather Forecast Frankfurt am Main (Hesse, Germany) forecast issued: 7\\u2009am Mon 06 Jul 2026 local time | Updates in: 4hr 35 min 24 s Germany Frankfurt am Main Frankfurt am Main Weather Forecast. Providing a
+    [35] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " with comfortable conditions and",
+      "references": {},
+      "nonce": "Zl/pdoAiHmCNzQClUp5T7w=="
+    }
+  ]
+}
+    [36] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " little risk of rain.",
+      "references": {},
+      "nonce": "1vuyiS0tVdOnl1aEEUkh3A=="
+    }
+  ]
+}
+    [37] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2search1\ue202turn2search6\ue201\n\n\u2600\ufe0f A warm summer day overall, with comfortable conditions and little risk of rain. \ue200cite\ue202",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-0
+    [38] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2search1\ue202turn2search6\ue201\n\n\u2600\ufe0f A warm summer day overall, with comfortable conditions and little risk of rain. \ue200cite\ue202turn2search1\ue201",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "c
+    [39] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2search1\ue202turn2search6\ue201\n\n\u2600\ufe0f A warm summer day overall, with comfortable conditions and little risk of rain. \ue200cite\ue202turn2search1\ue201",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "c
+    [40] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "patches": [
+        {
+          "value": "\ue200cite\ue202turn2search1\ue201",
+          "operationType": 2,
+          "path": "/723f8dad-9901-484f-b464-a23ba1e155ea/spokenText",
+          "op": "replace",
+          "from": null
+        }
+      ],
+      "nonce": "OPAgLRZbV4HsgFM73k64TQ=="
+    }
+  ]
+}
+    [41] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "author": "bot",
+          "createdAt": "2026-07-06T08:13:22.707969+00:00",
+          "timestamp": "2026-07-06T08:13:22.707969+00:00",
+          "messageId": "0f2ec74d-db9e-410d-8353-98fdd79d1bb4",
+          "requestId": "77fb61c0-251a-4bc0-a997-e2265b8e75e1",
+          "messageType": "ReferencesListComplete",
+          "offense": "None",
+          "turnCount": 2
+        }
+      ],
+      "nonce": "b3FcB/gzYU+7Q7nbXaCZlg=="
+    }
+  ]
+}
+    [42] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "**Weather for Frankfurt today (6 July 2026)**\n\n- Current conditions: **Mostly cloudy**, around **20\u00b0C (68\u00b0F)**, feels like **22\u00b0C (72\u00b0F)**. Humidity about **65%** with a light southwesterly wind. \ue200cite\ue202turn2search1\ue201\n- Today's forecast: **Partly sunny to mostly cloudy**, with a high near **30\u00b0C (86\u00b0F)** and a low around **17\u00b0C (63\u00b0F)**. Rain chance is very low. \ue200cite\ue202turn2search1\ue202turn2search7\ue201\n- Outlook: Warm and dry weather is expected to continue through the week, with temperatures climbing into the low **30s\u00b0C** later in the week. \ue200cite\ue202turn2search1\ue202turn2search6\ue201\n\n\u2600\ufe0f A warm summer day overall, with comfortable conditions and little risk of rain. \ue200cite\ue202turn2search1\ue201",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "c
+    [43] {
+  "type": 2,
+  "invocationId": "0",
+  "item": {
+    "messages": [
+      {
+        "text": "weather",
+        "author": "user",
+        "from": {
+          "id": "b2387d6c-0e6f-4f7f-a033-1c476ee851b3",
+          "name": null,
+          "displayName": null,
+          "partnerId": null
+        },
+        "createdAt": "2026-07-06T08:13:15.8664885+00:00",
+        "timestamp": "2026-07-06T10:13:15.8599732+02:00",
+        "locale": "de-de",
+        "market": "en-us",
+        "locationInfo": {
+          "country": "DE",
+          "state": "HE",
+          "city": "Frankfurt/Main",
+          "zipCode": "60313",
+          "timeZone": "Europe/Berlin",
+          "timeZoneOffset": 2,
+          "latitude": 50.117653,
+          "longitude": 8.682283,
+          "sourceType": 1,
+          "locationProvider": "XapBlisLocationProvider",
+          "timestamp": {
+            "utcTime": 639189223904227093,
+            "utcOffset": 0,
+            "isDateOnly": null
+          }
+        },
+        "messageId"
+    [43] {
+  "type": 3,
+  "invocationId": "0"
+}
+
+--- WebSocket 3 ---
+  Path: /m365Copilot/Chathub/b2387d6c-0e6f-4f7f-a033-1c476ee851b3@eb70b763-b6d7-4486-8555-8831709a784e
+  ConversationId: 3b2c1b26-2700-466c-9a6c-cf1a2cc9f297
+  access_token start: eyJ0eXAiOiJKV1QiLCJub25jZSI6Im8wa2Y2UlJYQzZoQy1DcH...
+  Sent frames: 4
+  Received frames: 63
+
+  SENT frames:
+    {
+  "protocol": "json",
+  "version": 1
+}
+    {
+  "type": 6
+}
+    {
+  "arguments": [
+    {
+      "source": "officeweb",
+      "clientCorrelationId": "8aabdeed-d4a4-4739-9d95-f8d9f730c1fa",
+      "sessionId": "75740612-a0f0-49fe-1573-acbfecebe3fd",
+      "optionsSets": [
+        "search_result_progress_messages_with_search_queries",
+        "update_textdoc_response_after_streaming",
+        "deepleo_networking_timeout_10minutes_canmore",
+        "cwc_flux_image",
+        "cwc_code_interpreter",
+        "cwc_code_interpreter_amsfix",
+        "cwcfluxgptv",
+        "flux_v3_gptv_enable_upload_multi_image_in_turn_wo_ch",
+        "gptvnorm2048",
+        "cwc_code_interpreter_citation_fix",
+        "code_interpreter_interactive_charts",
+        "cwc_code_interpreter_interactive_charts_inline_image",
+        "code_interpreter_matplotlib_patching",
+        "cwc_fileupload_odb",
+        "update_memory_plugin",
+        "add_custom_instructions",
+        "cwc_flux_v3",
+        "flux_v3_progress_messages",
+        "enable_batch_token_processing",
+        "enable_gg_gpt",
+        "flux_v3_references",
+        "flux_v3_references_entities",
+        "flux_v3_image_gen_enable_dimensions",
+        "flux_v3_image_gen_enable_non_watermarked_storage",
+        "flux_v3_image_gen_enable_icon_dimensions",
+        "flux_v3_image_gen_enable_system_text_with_params",
+        "flux_v3_image_gen_enable_designer_dimensions_meta_prompting_in_system_prompts",
+        "flux_v3_image_gen_enable_story",
+        "rich_responses",
+        "pages_citations",
+        "pages_citations_multiturn"
+      ],
+      "streamingMode": "ConciseWithPadding",
+      "options": {},
+      "extraExtensionParameters": {},
+      "allowedMessageTypes": [
+        "Chat",
+        "Suggestion",
+        "InternalSearchQuery",
+        "Disengaged",
+        "InternalLoaderMessage",
+        "Progress",
+        "GeneratedCode",
+        "RenderCardRequest",
+        "AdsQuery",
+        "SemanticSerp",
+        "GenerateContentQuery",
+        "GenerateGraphicArt",
+        "SearchQuery",
+        "ConfirmationCard",
+        "AuthError",
+        "DeveloperLogs",
+        "TriggerPlugin",
+        "HintInvocation",
+        "MemoryUpdate",
+        "EndOfRequest",
+        "TriggerConfirmation",
+        "ResumeInvokeAction",
+        "ResumeUserInputRequest",
+        "TriggerUserInputRequest",
+        "EscapeHatch",
+        "TriggerPluginAuth",
+        "ResumePluginAuth",
+        "SideBySide",
+        "ReferencesListComplete",
+        "SwitchRespondingEndpoint"
+      ],
+      "sliceIds": [],
+      "threadLevelGptId": {},
+      "traceId": "8aabdeed-d4a4-4739-9d95-f8d9f730c1fa",
+      "isStartOfSession": false,
+      "clientInfo": {
+        "clientPlatform": "mcmcopilot-web",
+        "clientAppName": "Office",
+        "clientEntrypoint": "mcmcopilot-officeweb",
+        "clientSessionId": "75740612-a0f0-49fe-1573-acbfecebe3fd",
+        "ProductCategory": "Chat",
+        "clientAppType": "Web",
+        "productEntryPoint": "ChatPanel",
+        "deviceOS": "Windows",
+        "deviceType": "Des
+    {
+  "arguments": [
+    {
+      "Timestamps": {
+        "UserInputStart": "2026-07-06T08:13:24.395Z",
+        "ConnectionStart": "2026-07-06T08:13:25.967Z",
+        "ConnectionEstablished": "2026-07-06T08:13:26.271Z",
+        "UserInputSubmit": "2026-07-06T08:13:28.171Z"
+      }
+    }
+  ],
+  "target": "Metrics",
+  "type": 1
+}
+    {
+  "arguments": [
+    {
+      "Timestamps": {
+        "RequestSent": "2026-07-06T08:13:28.249Z",
+        "FirstServiceResponseReceived": "2026-07-06T08:13:30.189Z",
+        "FirstServiceResponseRendered": "2026-07-06T08:13:30.191Z",
+        "FirstTokenReceived": "2026-07-06T08:13:31.339Z",
+        "LastTokenReceived": "2026-07-06T08:13:37.325Z",
+        "FirstTokenRendered": "2026-07-06T08:13:31.341Z",
+        "SuggestionsRendered": "2026-07-06T08:13:37.328Z",
+        "SuggestionsReceived": "2026-07-06T08:13:38.516Z"
+      }
+    }
+  ],
+  "target": "Metrics",
+  "type": 1
+}
+
+  ALL RECEIVED frames:
+    [0] {}
+    [1] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "nonce": "HAQXsFAvYspj85bAJKf7vA==",
+      "requestId": "8aabdeed-d4a4-4739-9d95-f8d9f730c1fa",
+      "throttling": {
+        "maxNumUserMessagesInConversation": 600,
+        "numUserMessagesInConversation": 3,
+        "numLongDocSummaryUserMessagesInConversation": 0
+      }
+    }
+  ]
+}
+    [2] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "OK, ich suche nach \u201eWorld Happiness Report 2025 global wellbeing mood\u201c...",
+          "isExpanded": false,
+          "isPersisted": false,
+          "addToChainOfThought": false,
+          "contentType": "SearchResults",
+          "searchQueries": [
+            "World Happiness Report 2025 global wellbeing mood"
+          ],
+          "author": "bot",
+          "createdAt": "2026-07-06T08:13:30.1438076+00:00",
+          "timestamp": "2026-07-06T08:13:30.1438076+00:00",
+          "messageId": "45682619-5773-4df6-82c2-dae2fc520766",
+          "requestId": "8aabdeed-d4a4-4739-9d95-f8d9f730c1fa",
+          "messageType": "Progress",
+          "offense": "None",
+          "turnCount": 3
+        }
+      ],
+      "nonce": "2r3Ik5jtE9IAqftIaYrRRA==",
+      "requestId": "8aabdeed-d4a4-4739-9d95-f8d9f730c1fa"
+    }
+  ]
+}
+    [3] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "cursor": {
+        "j": "$['0fd84337-58a9-44e4-81fe-f6c558e31c89'].adaptiveCards[0].body[0].text",
+        "p": -1
+      },
+      "messages": [
+        {
+          "text": "If",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "If",
+                  "wrap": true
+                }
+              ]
+            }
+          ],
+          "sourceAttributions": [],
+          "contentOrigin": "DeepLeo"
+        }
+      ],
+      "nonce": "ekjFosneiok23Ghf2pROuA==",
+      "requestId"
+    [4] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " by",
+      "references": {},
+      "nonce": "wX5uDMhrloqTqXAX+KlfYQ=="
+    }
+  ]
+}
+    [5] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " **\u201cworldwide moods\u201d** you mean the overall emotional state",
+      "references": {},
+      "nonce": "18Fix1zjXOiayObKsxFtXA=="
+    }
+  ]
+}
+    [6] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " of people around the world, a good proxy",
+      "references": {},
+      "nonce": "beH8uywFY1vPYIgVm9RCPg=="
+    }
+  ]
+}
+    [7] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " is the **World Happiness Report**.\n\n",
+      "references": {},
+      "nonce": "xoG3s47EQJuabFWFWq4sOg=="
+    }
+  ]
+}
+    [8] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n###",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n###",
+                  "wrap": true
+                }
+              ]
+
+    [9] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n-",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025
+    [10] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapsh
+    [11] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " wellbeing is strongly",
+      "references": {},
+      "nonce": "t6AvMiciyByFGZ1ZjdjjHQ=="
+    }
+  ]
+}
+    [12] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " linked to **social connection, trust, caring, and community",
+      "references": {},
+      "nonce": "ta0GIvDwKYQHl+0WWQ7f5g=="
+    }
+  ]
+}
+    [13] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " support",
+      "references": {},
+      "nonce": "vEShCR5aWNDcQ096/yjbvQ=="
+    }
+  ]
+}
+    [14] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "If by **\u201cworldwide moods\u201d** you mean the ove
+    [15] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "If by **\u201c
+    [16] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+            {
+              "type": "AdaptiveCard",
+              "version": "1.0",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "If by *
+    [17] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " that people are often **more kind",
+      "references": {
+        "1-55157f": {
+          "targetLink": "https://www.worldhappiness.report/ed/2025/",
+          "displayData": {
+            "type": "text/json",
+            "renderType": "CITATION",
+            "content": "{\"metadata\":{\"type\":\"Web\",\"referenceType\":0,\"hasAttachments\":false,\"referenceId\":\"turn3search9\",\"responseRequested\":false,\"suppressCitation\":false,\"isExternal\":false,\"isExcluded\":false,\"citationRefId\":\"turn3search9\"},\"label\":\"1\",\"providerDisplayName\":\"World Happiness Report 2025\",\"snippet\":\"World Happiness Report 2025 | The World Happiness Report World Happiness Report 2025 In this year\u2019s issue, we focus on the impact of caring and sharing on people\u2019s happiness. Like \u2018mercy\u2019 in Shakespeare\u2019s Merchant of Venice, caring is \u201ctwice-blessed\u201d \u2013 it blesses those who 
+    [18] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " and trustworthy than others expect**, and belief in",
+      "references": {},
+      "nonce": "a2zKavRHFk8z8fr5AJB1cw=="
+    }
+  ]
+}
+    [19] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " the kindness of others is closely associated with higher happiness levels",
+      "references": {},
+      "nonce": "AyXperF4ODDjkGODW0HFDg=="
+    }
+  ]
+}
+    [20] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": ".",
+      "references": {},
+      "nonce": "A7qDeS0ZCYl8nm1CwuZtaA=="
+    }
+  ]
+}
+    [21] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+          "adaptiveCards": [
+        
+    [22] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n-",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+         
+    [23] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31.2945472+00:00",
+          "timestamp": "2026-07-06T08:13:31.2945472+00:00",
+          "messageId": "0fd84337-58a9-44e4-81fe-f6c558e31c89",
+          "offense": "Unknown",
+       
+    [24] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " growing concern is",
+      "references": {
+        "3-a3a3f8": {
+          "targetLink": "https://wellbeing.hmc.ox.ac.uk/news/world-happiness-report-2025/",
+          "displayData": {
+            "type": "text/json",
+            "renderType": "CITATION",
+            "content": "{\"metadata\":{\"type\":\"Web\",\"referenceType\":0,\"hasAttachments\":false,\"referenceId\":\"turn3search14\",\"responseRequested\":false,\"suppressCitation\":false,\"isExternal\":false,\"isExcluded\":false,\"citationRefId\":\"turn3search14\"},\"label\":\"3\",\"providerDisplayName\":\"World Happiness Report 2025: People are much kinder than we expect ...\",\"snippet\":\"World Happiness Report 2025: People are much kinder than we expect, research shows \u2014 Wellbeing Research Centre 20 Mar 2025 World Happiness Report 2025: People are much kinder than we expect, research shows policy and interventions the future of wellbeing me
+    [25] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " **social",
+      "references": {},
+      "nonce": "RUPnfkOFFDjRdNTQkdAWsA=="
+    }
+  ]
+}
+    [26] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " isolation**, especially among younger adults;",
+      "references": {},
+      "nonce": "fNevBROm2BBB3YpkZZ/iwA=="
+    }
+  ]
+}
+    [27] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " in 2023, 19% of young adults",
+      "references": {},
+      "nonce": "6+7G4dBOfWPCbCaw7WV6Lw=="
+    }
+  ]
+}
+    [28] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " globally reported having nobody they could count on for support.",
+      "references": {},
+      "nonce": "xLztVfXqcOzAfIaKk9ii8Q=="
+    }
+  ]
+}
+    [29] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "createdAt": "2026-07-06T08:13:31
+    [30] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n-",
+          "author": "bot",
+          "responseIdentifier": "Default",
+          "crea
+    [31] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness",
+          "author": "bot",
+          "responseIdentifier": "Default",
+     
+    [32] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " trends vary by region and",
+      "references": {},
+      "nonce": "V7AHu/jyRKbMEGloAsSYiw=="
+    }
+  ]
+}
+    [33] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " age",
+      "references": {},
+      "nonce": "ZcZS+puxvzY8+kUovIaQ3A=="
+    }
+  ]
+}
+    [34] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people",
+    
+    [35] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [36] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " higher happiness than two decades ago, while",
+      "references": {},
+      "nonce": "kard3WpTIdhO9TAchScVIA=="
+    }
+  ]
+}
+    [37] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " some developed countries have seen declines in youth",
+      "references": {},
+      "nonce": "48wNlAH8LYRz6m5w9Gp8lA=="
+    }
+  ]
+}
+    [38] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " wellbeing",
+      "references": {},
+      "nonce": "qlIbdBf7KB1udPBzbM+9RQ=="
+    }
+  ]
+}
+    [39] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [40] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [41] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [42] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [43] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [44] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [45] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [46] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " dominated by Nordic countries.) ",
+      "references": {
+        "4-c67351": {
+          "targetLink": "https://www.gallup.com/analytics/349487/world-happiness-report.aspx",
+          "displayData": {
+            "type": "text/json",
+            "renderType": "CITATION",
+            "content": "{\"metadata\":{\"type\":\"Web\",\"referenceType\":0,\"hasAttachments\":false,\"referenceId\":\"turn3search13\",\"responseRequested\":false,\"suppressCitation\":false,\"isExternal\":false,\"isExcluded\":false,\"citationRefId\":\"turn3search13\"},\"label\":\"4\",\"providerDisplayName\":\"World Happiness Report - Gallup\",\"snippet\":\"World Happiness Report - Gallup Gallup Insights World Happiness Report 2026: Happiness Rankings and Trends The annual World Happiness Report assesses the current state of happiness across nearly 150 countries. The country rankings are powered by nationally representative data from th
+    [47] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": "\u30103-a3a3f8\u3011\u30101-55157f\u3011",
+      "references": {},
+      "nonce": "hiiKRsuB4lbD9SkirOKqDw=="
+    }
+  ]
+}
+    [47] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [48] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [49] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [50] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " challenges",
+      "references": {},
+      "nonce": "6DujXjWe8r2x0yXzvgur5w=="
+    }
+  ]
+}
+    [51] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " such as loneliness",
+      "references": {},
+      "nonce": "dR+cdsRZltsYc6C/al4ZrQ=="
+    }
+  ]
+}
+    [52] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " and uncertainty, yet strong evidence shows that social",
+      "references": {},
+      "nonce": "8ZaczdW74cXJ5v0n4ih+pQ=="
+    }
+  ]
+}
+    [53] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " trust, kindness, and community",
+      "references": {},
+      "nonce": "Y4WgxMx9ZBowrJdgI4A3Iw=="
+    }
+  ]
+}
+    [54] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " remain major sources of wellbeing",
+      "references": {},
+      "nonce": "RcHqi+u3ydsVNRg6ONUW2Q=="
+    }
+  ]
+}
+    [55] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "writeAtCursor": " worldwide",
+      "references": {},
+      "nonce": "4yG+6Cb7VifWptpIhlGWzQ=="
+    }
+  ]
+}
+    [56] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [57] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [58] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [59] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "patches": [
+        {
+          "value": "\ue200cite\ue202turn3search14\ue202turn3search9\ue201",
+          "operationType": 2,
+          "path": "/0fd84337-58a9-44e4-81fe-f6c558e31c89/spokenText",
+          "op": "replace",
+          "from": null
+        }
+      ],
+      "nonce": "IY8ECFqLnO/nIUBvaBjzmA=="
+    }
+  ]
+}
+    [60] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "author": "bot",
+          "createdAt": "2026-07-06T08:13:36.455112+00:00",
+          "timestamp": "2026-07-06T08:13:36.455112+00:00",
+          "messageId": "ddfae2b5-0eff-46c9-8e65-b024e466881d",
+          "requestId": "8aabdeed-d4a4-4739-9d95-f8d9f730c1fa",
+          "messageType": "ReferencesListComplete",
+          "offense": "None",
+          "turnCount": 3
+        }
+      ],
+      "nonce": "U7pMK7N/27+QY1weS+mZoQ=="
+    }
+  ]
+}
+    [61] {
+  "type": 1,
+  "target": "update",
+  "arguments": [
+    {
+      "messages": [
+        {
+          "text": "If by **\u201cworldwide moods\u201d** you mean the overall emotional state of people around the world, a good proxy is the **World Happiness Report**.\n\n### Global mood snapshot (2025\u20132026)\n- Overall wellbeing is strongly linked to **social connection, trust, caring, and community support**. \ue200cite\ue202turn3search9\ue202turn3search12\ue201\n- Researchers report that people are often **more kind and trustworthy than others expect**, and belief in the kindness of others is closely associated with higher happiness levels. \ue200cite\ue202turn3search14\ue202turn3search12\ue201\n- A growing concern is **social isolation**, especially among younger adults; in 2023, 19% of young adults globally reported having nobody they could count on for support. \ue200cite\ue202turn3search14\ue201\n- Happiness trends vary by region and age group. In many countries, younger people report
+    [62] {
+  "type": 2,
+  "invocationId": "0",
+  "item": {
+    "messages": [
+      {
+        "text": "Worldwide moodS",
+        "author": "user",
+        "from": {
+          "id": "b2387d6c-0e6f-4f7f-a033-1c476ee851b3",
+          "name": null,
+          "displayName": null,
+          "partnerId": null
+        },
+        "createdAt": "2026-07-06T08:13:28.2302866+00:00",
+        "timestamp": "2026-07-06T10:13:28.2250973+02:00",
+        "locale": "de-de",
+        "market": "en-us",
+        "locationInfo": {
+          "country": "DE",
+          "state": "HE",
+          "city": "Frankfurt/Main",
+          "zipCode": "60313",
+          "timeZone": "Europe/Berlin",
+          "timeZoneOffset": 2,
+          "latitude": 50.117653,
+          "longitude": 8.682283,
+          "sourceType": 1,
+          "locationProvider": "XapBlisLocationProvider",
+          "timestamp": {
+            "utcTime": 639189223904227093,
+            "utcOffset": 0,
+            "isDateOnly": null
+          }
+        },
+        "me
+    [62] {
+  "type": 3,
+  "invocationId": "0"
+}
+

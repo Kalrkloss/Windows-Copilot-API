@@ -40,7 +40,9 @@ from playwright.sync_api import sync_playwright, Error as PlaywrightError
 from .auth import DEFAULT_AUTH_FILE, DEFAULT_PROFILE_DIR
 from .useragent import CHROME_UA
 
-COPILOT_URL = "https://copilot.microsoft.com/"
+# The public chat landing used by M365-hosted Copilot. We open the browser at
+# the interactive chat page but the underlying APIs live on the site root.
+COPILOT_URL = "https://m365.cloud.microsoft/chat/"
 
 # The Cloudflare Turnstile widget renders inside a cross-origin iframe served
 # from challenges.cloudflare.com (page-load interstitial *and* the in-chat gate).
@@ -290,7 +292,7 @@ class BrowserCopilot:
         self._mirror_page_events(log)
 
         print(
-            "\nA browser window is open at copilot.microsoft.com.\n"
+            "\nA browser window is open at m365.cloud.microsoft/chat.\n"
             "Sign in (and pass any 'verify you're human' check).\n"
             "It finishes by itself once sign-in is detected — no need to press Enter.\n"
         )
@@ -430,26 +432,44 @@ class BrowserCopilot:
     def _install_ws_listener(self) -> None:
         """Capture the chat token off the page's own chat WebSocket.
 
-        The page opens ``wss://.../c/api/chat?...&accessToken=<token>`` (plus, for
-        federated logins, ``&X-UserIdentityType=google``) when it sends a turn.
+        Handles two backends:
+
+        * **Consumer copilot.microsoft.com** — ``wss://…/c/api/chat?…&accessToken=<tok>``
+          Token is in the ``accessToken=`` query parameter (camelCase).
+        * **M365 substrate backend** — ``wss://substrate.svc.cloud.microsoft/m365Copilot/Chathub/…?…&access_token=<tok>``
+          Token is in the ``access_token=`` query parameter (snake_case).
+
         Reading the token here is encryption-proof: the page has already decrypted
         it. parse_qs URL-decodes the value, so we store the raw token (the drivers
-        re-quote it when building their own socket URL)."""
+        re-quote it when building their own socket URL).
+        """
         if self._ws_listener_installed or self._page is None:
             return
 
         def on_ws(ws):
             try:
                 url = ws.url
-                if "/c/api/chat" not in url:
-                    return
-                if "accessToken=" in url:
-                    q = parse_qs(urlparse(url).query)
+                q = parse_qs(urlparse(url).query)
+
+                # Consumer copilot: /c/api/chat with accessToken= (camelCase)
+                if "/c/api/chat" in url:
                     tok = (q.get("accessToken") or [None])[0]
                     if tok:
                         self._captured_chat_token = tok
                         self._captured_identity_type = (q.get("X-UserIdentityType") or [None])[0]
-                # Watch reply frames so auto_clear knows the turn passed the gate.
+
+                # M365 substrate backend: /m365Copilot/Chathub/ with access_token= (snake_case)
+                elif "/m365Copilot/Chathub/" in url:
+                    tok = (q.get("access_token") or [None])[0]
+                    if tok:
+                        self._captured_chat_token = tok
+                        # No identity_type for M365 (AAD handles identity)
+                        self._captured_identity_type = None
+
+                else:
+                    return  # not a chat socket we care about
+
+                # Watch reply frames so auto_clear / warmup knows the turn passed.
                 ws.on("framereceived", self._on_chat_frame)
             except Exception:
                 pass
@@ -463,16 +483,22 @@ class BrowserCopilot:
     def _on_chat_frame(self, payload) -> None:
         """Flag a passed turn when the chat socket streams reply content.
 
-        An ``appendText`` (or ``imageGenerated``) frame means the warm-up reply is
-        flowing, i.e. Cloudflare let the turn through — auto_clear's success
-        signal. A ``challenge`` frame contains neither, so this never false-fires
-        on the gate itself."""
+        Detects streaming response signals for both backends:
+        - Consumer copilot: ``appendText`` or ``imageGenerated`` event in the frame.
+        - M365 substrate:  SignalR ``update`` frame with ``author: "bot"`` messages.
+        """
         try:
             data = payload if isinstance(payload, str) else bytes(payload).decode("utf-8", "ignore")
         except Exception:
             return
+        # Consumer copilot signals
         if "appendText" in data or "imageGenerated" in data:
             self._warmup_replied = True
+            return
+        # M365 SignalR signals: update frame with bot content
+        if '"target":"update"' in data or '"target": "update"' in data:
+            if '"author":"bot"' in data or '"author": "bot"' in data:
+                self._warmup_replied = True
 
     def _send_warmup(self, text: str = "hi") -> bool:
         """Send one message through the page composer to mint the chat token.
@@ -480,10 +506,52 @@ class BrowserCopilot:
         Returns True if a send was attempted. Federated (Google) sessions only
         mint the ChatAI token on the first chat turn, so we trigger one here and
         let :meth:`_install_ws_listener` capture the token off the resulting
-        socket."""
-        for sel in ("textarea", "div[contenteditable='true']", "[role='textbox']"):
+        socket.
+
+        m365.cloud.microsoft/chat uses a React/Fluent UI that renders slowly and
+        may show a "New chat" landing before the input is available. We try a
+        broader set of selectors and wait longer for the input to appear.
+        """
+        # Give the m365 SPA extra time to finish rendering after page load.
+        try:
+            self._page.wait_for_timeout(3000)
+        except PlaywrightError:
+            pass
+
+        # Try to click a "New chat" button first (m365 may show conversation list).
+        for new_chat_sel in (
+            "[aria-label='New chat']",
+            "[aria-label='New Chat']",
+            "button[data-tid='new-chat-button']",
+            "button:has-text('New chat')",
+            "a[href*='new']",
+        ):
             try:
-                self._page.wait_for_selector(sel, state="visible", timeout=8000)
+                self._page.click(new_chat_sel, timeout=2000)
+                self._page.wait_for_timeout(1500)
+                break
+            except PlaywrightError:
+                pass
+
+        # Selectors for the chat text input (ordered from most to least specific).
+        input_selectors = (
+            # m365 Copilot Chat (Fluent / ProseMirror-based)
+            "[aria-label='Message Copilot']",
+            "[aria-label*='message']",
+            "[aria-label*='Message']",
+            "[data-testid*='chat-input']",
+            "[data-testid*='input']",
+            "[id*='chat-input']",
+            "[id*='copilot-input']",
+            # Generic contenteditable / textbox
+            "div[contenteditable='true']",
+            "[role='textbox']",
+            # Plain textarea (consumer copilot fallback)
+            "textarea",
+        )
+        for sel in input_selectors:
+            try:
+                self._page.wait_for_selector(sel, state="visible", timeout=6000)
             except PlaywrightError:
                 continue
             try:
@@ -552,7 +620,7 @@ class BrowserCopilot:
         Cloudflare mints a *new* ``cf_clearance`` when a challenge is solved, so a
         change in this value is the reliable signal that fresh clearance was
         actually earned (:meth:`auto_clear` waits on it). The cookie is set on the
-        ``.copilot.microsoft.com`` domain."""
+        ``.m365.cloud.microsoft`` domain."""
         if self._context is None:
             return None
         try:
@@ -757,13 +825,53 @@ class BrowserCopilot:
         return earned
 
     def cookies(self) -> Dict[str, str]:
-        """Return the signed-in Microsoft cookies as a name->value dict."""
+        """Return the signed-in Microsoft cookies as a name->value dict.
+
+        Uses the Chrome DevTools Protocol ``Network.getAllCookies`` as the primary
+        path: Chrome decrypts DPAPI-encrypted cookie values before returning them
+        via CDP, so we get the real plaintext values even on Windows where
+        Playwright's standard ``context.cookies()`` returns them encrypted/empty.
+
+        Falls back to ``context.cookies()`` (works for non-DPAPI cookies, e.g. on
+        Linux/macOS or when cookies were set during the current in-memory session).
+
+        Captures cookies from all relevant Microsoft domains:
+          * ``*.microsoft.com``       — consumer Copilot, Graph, etc.
+          * ``*.microsoftonline.com`` — AAD / esctx tokens
+          * ``*.cloud.microsoft``     — m365 OfficeHub session (OhpAuth, OhpToken,
+            OH.SID, OH.FLID, OH.DCAffinity, AjaxSessionKey …)
+        """
         self._ensure_started()
+        _domains = ("microsoft.com", "microsoftonline.com", "cloud.microsoft")
+
+        # Primary path: CDP returns all cookies with DPAPI values already decrypted.
+        try:
+            cdp = self._context.new_cdp_session(self._page)
+            result = cdp.send("Network.getAllCookies")
+            try:
+                cdp.detach()
+            except PlaywrightError:
+                pass
+            raw = result.get("cookies", [])
+            if raw:
+                return {
+                    c["name"]: c["value"]
+                    for c in raw
+                    if any(d in c.get("domain", "") for d in _domains)
+                }
+        except (PlaywrightError, Exception):
+            pass
+
+        # Fallback: standard Playwright context cookies (non-DPAPI / in-memory).
         try:
             raw = self._context.cookies()
+            return {
+                c["name"]: c["value"]
+                for c in raw
+                if any(d in c.get("domain", "") for d in _domains)
+            }
         except PlaywrightError:
             return {}
-        return {c["name"]: c["value"] for c in raw if "microsoft.com" in c.get("domain", "")}
 
     def export_auth(self, path: str = DEFAULT_AUTH_FILE, stamp: Optional[float] = None) -> dict:
         """Snapshot the signed-in cookies + access token to ``path`` as JSON.
