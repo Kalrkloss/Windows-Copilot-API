@@ -1,5 +1,8 @@
 
 
+
+**This is a fork of [sums001/Windows-Copilot-API](https://github.com/sums001/Windows-Copilot-API). It's a modification to run with Microsoft Copilot Corporate, not the public edition.**
+
 # Windows Copilot API: a local API for Microsoft Copilot for work
 
 ![Windows Copilot API — a local, OpenAI-compatible API for your Microsoft Copilot for work account](assets/windows-copilot-api-banner.png)
